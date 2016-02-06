@@ -1,0 +1,53 @@
+\documentclass{report}
+
+\author{Dmytro Bogatov}
+
+\usepackage[left=1in, right=1in]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{geometry}
+
+\usepackage{setspace}
+\doublespacing
+
+\usepackage{titlesec}
+\titleformat{\chapter}
+    {\Large\bfseries} % format
+    {}                % label
+    {0pt}             % sep
+    {\huge}
+
+
+\fancyhf{}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+\fancyhead[LE,RO]{\thepage}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\chaptermark[1]{\markboth{#1}{}} 
+\renewcommand\sectionmark[1]{\markright{\thesection.\ #1}}
+
+
+\begin{document}
+
+    \include{Sections/TitlePage}
+
+    \include{Sections/Abstract}
+    \pagebreak
+
+    \include{Sections/ExecutiveSummary}
+    \pagebreak
+
+    \include{Sections/Acknowledgements}
+    \pagebreak
+
+    \tableofcontents
+
+    \include{Sections/Introduction}
+    
+    \include{Sections/Background}
+
+\end{document}
