@@ -11,6 +11,8 @@
 \usepackage{enumitem}
 \usepackage{geometry}
 
+\usepackage{url}
+
 \usepackage{setspace}
 \doublespacing
 
@@ -30,24 +32,37 @@
 \renewcommand\chaptermark[1]{\markboth{#1}{}} 
 \renewcommand\sectionmark[1]{\markright{\thesection.\ #1}}
 
+\usepackage[nottoc]{tocbibind}
+\renewcommand{\bibname}{References}
 
 \begin{document}
 
-    \include{Sections/TitlePage}
+    \include{sections/TitlePage}
 
-    \include{Sections/Abstract}
+    \include{sections/Abstract}
     \pagebreak
 
-    \include{Sections/ExecutiveSummary}
+    \include{sections/ExecutiveSummary}
     \pagebreak
 
-    \include{Sections/Acknowledgements}
+    \include{sections/Acknowledgements}
     \pagebreak
 
     \tableofcontents
 
-    \include{Sections/Introduction}
+    \include{sections/Introduction}
     
-    \include{Sections/Background}
+    \include{sections/Background}
+    
+    \include{sections/Methodology}
+    
+    \include{sections/Testing}
+    
+    \include{sections/Results}
+    
+    \include{sections/Conclusions}
+
+    \bibliographystyle{unsrt}
+    \bibliography{bibliography/references}
 
 \end{document}
