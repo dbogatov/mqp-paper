@@ -10,23 +10,43 @@ Implementing a Metric Builder, the core question was how to store and compute us
     Store user metric data in databse
     \begin{itemize}
       \item
-        Pros: fast to retrive; n computation needed
+        Pros
+        \begin{itemize}
+          \item
+            Fast to retrive; n computation needed
+        \end{itemize}
       \item
-        Cons: waste of space it database
-      \item
-        Cons: user metric data remains ststic; update in underlying data does not cause an update in the user metric
+        Cons
+        \begin{itemize}
+          \item
+            Waste of space it database
+          \item
+            User metric data remains ststic; update in underlying data does not cause an update in the user metric
+        \end{itemize}
     \end{itemize}
   \item
     Store user metric as a metadata only and compute values on-the-fly (on-demand)
     \begin{itemize}
       \item
-        Pros: efficient use of database space
+        Pros
+        \begin{itemize}
+          \item
+            Efficient use of database space
+          \item
+            User metric data is always in sync with base data
+        \end{itemize}
       \item
-        Pros: user metric data is always in sync with base data
-      \item
-        Cons: might be time costy to compute
+        Cons
+        \begin{itemize}
+          \item
+            Might be time costy to compute
+        \end{itemize}
     \end{itemize}
 \end{enumerate}
+
+Looking at the cons of each option, we attempted to approximate how bad they are. Having $n$ users each creating $m$ user metrics each of which has data for $k$ years we have $m \cdot n \cdot k \cdot 50$ entries in database. This data would be a snapshot. If any data point in metrics changes, user metrics remain out of sync. \\
+
+For the second option, it was diffucult to approximate time it takes to compute a user metric as it depends on server load and number of metrics involved in the user metric. We implemented the second option and benchmarked it wth 3 users trying to compute largest possible user metric (all metrics with all states selected). It took around $1.5$ seconds to load all $3$ user metrics. This drove our design decision towards the second option - computing metrics on-the-fly.
 
 \subsection{API}
 
