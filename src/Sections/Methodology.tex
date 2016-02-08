@@ -4,6 +4,30 @@
 
 \subsection{Metric Builder}
 
+Implementing a Metric Builder, the core question was how to store and compute user metric. We have come to these two options
+\begin{enumerate}
+  \item
+    Store user metric data in databse
+    \begin{itemize}
+      \item
+        Pros: fast to retrive; n computation needed
+      \item
+        Cons: waste of space it database
+      \item
+        Cons: user metric data remains ststic; update in underlying data does not cause an update in the user metric
+    \end{itemize}
+  \item
+    Store user metric as a metadata only and compute values on-the-fly (on-demand)
+    \begin{itemize}
+      \item
+        Pros: efficient use of database space
+      \item
+        Pros: user metric data is always in sync with base data
+      \item
+        Cons: might be time costy to compute
+    \end{itemize}
+\end{enumerate}
+
 \subsection{API}
 
 \section{Changes to the system and database}
