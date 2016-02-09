@@ -9,6 +9,16 @@
 \usepackage{enumitem}
 \usepackage{geometry}
 
+\usepackage{listings}
+\lstset{language=Java, numbers=left}
+\usepackage[usenames, dvipsnames]{color}
+
+\usepackage{array}							% apply style to column
+
+\definecolor{codegray}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
+
+
 \usepackage{url}
 
 \usepackage{setspace}
@@ -47,6 +57,10 @@
     \pagebreak
 
     \tableofcontents
+	
+	\listoffigures
+	\listoftables
+	
 
     \include{sections/Introduction}
     

@@ -2,52 +2,171 @@
 
 \section{Design Choices}
 
-\subsection{Metric Builder}
+	\subsection{Metric Builder}
 
-Implementing a Metric Builder, the core question was how to store and compute user metric. We have come to these two options
-\begin{enumerate}
-  \item
-    Store user metric data in databse
-    \begin{itemize}
-      \item
-        Pros
-        \begin{itemize}
-          \item
-            Fast to retrive; n computation needed
-        \end{itemize}
-      \item
-        Cons
-        \begin{itemize}
-          \item
-            Waste of space it database
-          \item
-            User metric data remains ststic; update in underlying data does not cause an update in the user metric
-        \end{itemize}
-    \end{itemize}
-  \item
-    Store user metric as a metadata only and compute values on-the-fly (on-demand)
-    \begin{itemize}
-      \item
-        Pros
-        \begin{itemize}
-          \item
-            Efficient use of database space
-          \item
-            User metric data is always in sync with base data
-        \end{itemize}
-      \item
-        Cons
-        \begin{itemize}
-          \item
-            Might be time costy to compute
-        \end{itemize}
-    \end{itemize}
-\end{enumerate}
+		Implementing a Metric Builder the core question was how to store and compute a user metric. We have come to these two options
 
-Looking at the cons of each option, we attempted to approximate how bad they are. Having $n$ users each creating $m$ user metrics each of which has data for $k$ years we have $m \cdot n \cdot k \cdot 50$ entries in database. This data would be a snapshot. If any data point in metrics changes, user metrics remain out of sync. \\
+		\begin{enumerate}
+			\item
+				Store a user metric data in the databse
+				\begin{itemize}
+					\item
+						Pros
+						\begin{itemize}
+							\item
+								Fast to retrive; no computation needed
+						\end{itemize}
+					\item
+						Cons
+						\begin{itemize}
+							\item
+								Waste of space in the database
+							\item
+								User metric data remains ststic; update in the underlying data does not cause an update in the user metric
+						\end{itemize}
+				\end{itemize}
+			\item
+				Store a user metric as a metadata only and compute values on-the-fly (on-demand)
+				\begin{itemize}
+					\item
+						Pros
+						\begin{itemize}
+							\item
+								Efficient use of the database space
+							\item
+								User metric data is always in sync with underlying data
+						\end{itemize}
+					\item
+						Cons
+						\begin{itemize}
+							\item
+								Might be time-consuming to compute
+						\end{itemize}
+				\end{itemize}
+		\end{enumerate}
 
-For the second option, it was diffucult to approximate time it takes to compute a user metric as it depends on server load and number of metrics involved in the user metric. We implemented the second option and benchmarked it wth 3 users trying to compute largest possible user metric (all metrics with all states selected). It took around $1.5$ seconds to load all $3$ user metrics. This drove our design decision towards the second option - computing metrics on-the-fly.
+		Looking at the cons of each option, we attempted to approximate how bad they are. Having $n$ users each creating $m$ user metrics each of which has data for $k$ years we have $m \cdot n \cdot k \cdot 50$ entries in the database. This data would be a snapshot. If any data point in the metrics changes, user metrics remain out of sync.
 
-\subsection{API}
+		For the second option, it was diffucult to approximate time it takes to compute a user metric as it depends on the server load and the number of metrics involved in the user metric. We implemented the second option and benchmarked it wth $3$ users trying to compute largest possible user metric (all metrics with all states selected). It took around $1.5$ seconds to load all $3$ user metrics. This drove our design decision towards the second option - computing metrics on-the-fly.
 
-\section{Changes to the system and database}
+	\subsection{API}
+		
+		Implementing an API, there are 2 problems to consider
+		\begin{itemize}
+			\item
+				Do we implement a closed API or open API? If closed one, how do we implement authentication.
+			\item
+				Which methods do we put in the API?
+			\item
+				How our query string will look like? What is the output format?
+		\end{itemize}
+		
+		\subsubsection{Authentication}
+			
+			Although MATTERS system is a public resource, we wanted to at least track who uses our API, how and how often. This requirement made us chose a closed API option. Thinking of authentication we had a few options
+			\begin{itemize}
+				\item
+					Bind to user
+				\item
+					Simple \emph{API key} (token) authentication
+				\item
+					Complex \emph{handshake} mechanism					
+				\item
+					\emph{Handshake} mechanism with random value
+			\end{itemize}
+			
+			Binding to API user t regular user would allow any registered user to access API. Although this kind of authentication is the easiest one to implement we wanted a separate API users.
+			
+			Simple  \emph{API key} authentication is the one when API users are given unique token (long random string) which they need to provide with each request. Based on this token system is able to accept or deny connection and trach individual users.
+			
+			\emph{Handshake} mechanism with random value involves the following steps
+			
+			% source http://web.cs.wpi.edu/~cs4513/c16/projects/proj2/index.html
+			\begin{itemize}
+				\item
+					Client sends in username (not password)
+				\item
+					Server responds by sending back unique random number
+				\item
+					Client encrypts using user's password plus number as key
+				\item
+					Client sends hashed or encrypted value back to server
+				\item
+					Server encrypts using the user's same password plus number as key
+				\item
+					Server compares two hashed or encrypted values, if same then grant access
+			\end{itemize}
+			
+			Provided that the main purpose of the API being closed is tracking an activity for statistical purposes, \emph{API key} aouthentication was impplemented.
+
+		\subsubsection{Methods}
+			
+			Main method implemented in the API is \code{api/data?}. This method returns all data points for given metrics, states and years.
+			
+			Since \code{api/data?} needs specific IDs as arguments, there is a need for supporting methods which show information about metrics and states. So we also implementd \code{api/metrics?} and \code{api/states?}.
+
+		\subsubsection{Query string and output format}
+		
+			The are two options for constructing a query string.
+			\begin{itemize}
+				\item
+					\code{api/method?argument1=value1\&argument2=value2\&...}
+				\item
+					\code{api/method/value1/value2/...}
+			\end{itemize}
+			
+			To make out API user friendly we implemented the first option since it clearly shows which value corresponds to which arguments and these argument-value pairs may be in any order.
+			
+			The final query strings are given is Listing. \ref{apicode}
+			
+			\begin{lstlisting}[frame=lines, caption={API methods examples}, label=apicode, backgroundcolor=\color{codegray}, emph={data,metrics, states},emphstyle=\underbar]
+/* method */
+/api/data?metric=&state=&year=&apiKey=
+/* example */
+/api/data?metric={16,32}&state=MA&year=*&apiKey=key
+
+/* method */
+/api/metrics?apiKey=
+/* example */
+/api/metrics?apiKey=key
+
+/* method */
+/api/states?apiKey=
+/* example */
+/api/states?apiKey=key
+			\end{lstlisting}
+			
+			The output format JSON (JavaScript Object Notation) was chosen as it both comapact and human and computer readable. 
+
+\section{Changes to the database}
+
+	We had to add two tables to the database - \textbf{APIUser} and \textbf{User Metric}. See Table. \ref{apiusertable} and Table. \ref{umetrictable}.
+	
+	\begin{table}[t!]
+		\centering
+		\begin{tabular}{| >{\bf}c | >{\em}c | l | c |} 
+			\hline
+			Name	& Type			& Comment										& Reference	\\ \hline
+			Id		& INT			& Unigue aoutoincremented identifier			& none		\\
+			Name	& VARCHAR		& API user's name								& none		\\
+			ApiKey	& VARCHAR(160)	& Unique random string; used for authentication	& none		\\
+			\hline
+		\end{tabular}
+		\caption{\textbf{API User} database relation}
+		\label{apiusertable}
+	\end{table}
+	
+	\begin{table}[t!]
+		\centering
+		\begin{tabular}{| >{\bf}c | >{\em}c | l | c |} 
+			\hline
+			Name	& Type			& Comment												& Reference						\\ \hline
+			Id		& INT			& Unigue aoutoincremented identifier					& none							\\
+			Name	& VARCHAR		& User metric's title									& none							\\
+			Value	& TEXT			& JSON formatted list of metric id - coefficient pairs	& none							\\
+			UserID	& INT			& Id of a user - author of the user metric				& Id in \textbf{User} relation	\\
+			\hline
+		\end{tabular}
+		\caption{\textbf{User Metric} database relation}
+		\label{umetrictable}
+	\end{table}
