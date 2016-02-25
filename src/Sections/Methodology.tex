@@ -147,34 +147,34 @@
 			
 			The output format JSON (JavaScript Object Notation) was chosen as it both comapact and human and computer readable. 
 			
-			\subsection{Documentation}
+		\subsection{Documentation}
 			
 			In order for the developers to know how to make proper API calls, it was necessary to create the API Documentation page for MATTERS. The documentation providers users with full information on the MATTERS API and how to use it, as well as examples of valid API calls and the output that they would return. It is important to ensure that the API documentation is free of both natural language and code sample errors, as this tool is what developers unfamiliar with using the API rely on to understand how to properly access and extract data [14]. 
 			
 			In order to make the documentation easy to follow, the documentation was divided into sections. The main sections of the API documentation were: an overview, the methods, the parameters, and examples. The layout of the MATTERS API documentation was based on the API Documentation of Tradestation, which had was very simple and easy to follow. The Tradestation documentation provided a summary, path, parameters, and examples of both an API call and what it would return. An example of their documentation can be found at: http://tradestation.github.io/webapi-docs/en/users/accounts/. For the MATTERS API, it was necessary to include information on where to access a user’s API key, as well as the proper format to get the data desired for different, years, states, and metrics. The API Documentation sections are explained in the following sections. The full API Documentation can be found in Appendix 1.
 			
 			
-			\subsubsection{Overview}
+		\subsubsection{Overview}
 			
-			The API Documentation begins with a summary about what the MATTERS API is and what data points the API tool gives users access to. This section also includes an interactive table of contents which allows users to quickly navigate to a specific section of the documentation to look for information. This allows users to easily find what they are looking for without having to scroll through the entire documentation page and provides a brief overview of everything that follows.
+		The API Documentation begins with a summary about what the MATTERS API is and what data points the API tool gives users access to. This section also includes an interactive table of contents which allows users to quickly navigate to a specific section of the documentation to look for information. This allows users to easily find what they are looking for without having to scroll through the entire documentation page and provides a brief overview of everything that follows.
 			
 			\subsubsection{API Key}
 			
-			Developers without authorization do not have the ability to use the MATTERS API until they have been given an API key. These users are directed to the “Contact Us” page in order to send an email request to become an authorized user with their own key. This section also explains that the API key is used in all API calls in order to validate the user's request.
+		Developers without authorization do not have the ability to use the MATTERS API until they have been given an API key. These users are directed to the “Contact Us” page in order to send an email request to become an authorized user with their own key. This section also explains that the API key is used in all API calls in order to validate the user's request.
 			
-			\subsubsection{States}
+		\subsubsection{States}
 			
 			Users are instructed on the proper format needed to retrieve a single state, list of states, or all states. If a user does not know any other information regarding the states in the MATTERS system, they are shown where to find any other information needed via an API request.
 			
-			\subsubsection{Metrics}
+		\subsubsection{Metrics}
 			
 			Users are given the proper format in order to request data for a single metric, list of metrics or all metrics in the MATTERS database. The documentation explains that in order to access data from metrics, the metric parameter values must be the proper metric’s ID number. The user is also given the path to all information regarding the metrics, which will give the user the metric names, ID numbers and details.
 			
-			\subsubsection{Years}
+		\subsubsection{Years}
 			
 			Users are given the proper format to request data from specific years. Users may request data for a single year, range of years or all years in the database. 
 			
-			\subsubsection{Examples}
+		\subsubsection{Examples}
 			
 			Following the parameters and methods of the MATTERS API, the documentation provides the users with two examples of valid API requests and the data which they would return. The example requests include the proper format of the parameter values and the various different types of calls the users can make to request specific data. Under the path name showing an API request the option to display the return value of that specific example. Users can view this to see the return data as well as the JSON format it would be given in. 
 			
@@ -205,7 +205,7 @@
 			Name	& Type			& Comment												& Reference						\\ \hline
 			Id		& INT			& Unigue aoutoincremented identifier					& none							\\
 			Name	& VARCHAR		& User metric's title									& none							\\
-			Value	& TEXT			& JSON formatted list of metric id - coefficient pairs	& none							\\
+			Value	& TEXT			& JSON formatted list of metric id - coefficient		& none							\\
 			UserID	& INT			& Id of a user - author of the user metric				& Id in \textbf{User} relation	\\
 			\hline
 		\end{tabular}
