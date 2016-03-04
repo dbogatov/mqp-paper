@@ -1,11 +1,49 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{prevreport}
 Alex Fortier, Long Hoang~Nguyen Duc, Kevin Mee, and Westley Russell.
 \newblock Advancing massachusetts’ technology, talent and economy reporting
   system (matters).
 \newblock
-  \url{http://www.wpi.edu/Pubs/E-project/Available/E-project-042915-094249/unrestricted/Advancing_MATTERS.pdf},
-  2015.
+  \url{http://www.wpi.edu/Pubs/E-project/Available/E-project-042915-094249/unrestricted/Advancing_MATTERS.pdf}.
+
+\bibitem{iqp}
+Nilesh Patel, Stefan Gvozdenovic, and Ted Meyer.
+\newblock State cost competitiveness dashboard.
+\newblock
+  \url{http://www.wpi.edu/Pubs/E-project/Available/E-project-050814-222635/unrestricted/Final_report_5.6.2014_FINAL-revisions.pdf}.
+
+\bibitem{govapi}
+Greg Sleter.
+\newblock What's an api and why do you need one?
+
+\bibitem{readwrite}
+Brian Proffitt.
+\newblock What apis are and why they're important.
+
+\bibitem{jisc}
+Andy McGregor, David Flanders, and Malcolm Ramsey.
+\newblock The advantage of apis.
+
+\bibitem{cio}
+Gregory Koberger.
+\newblock The importance of good api documentation: Creating meaningful
+  partnerships for businesses.
+
+\bibitem{weightedaverage}
+Weighted average.
+
+\bibitem{cpi}
+Consumer price index - cpi.
+
+\bibitem{economic}
+The top 10 economic indicators: What to watch and why.
+
+\bibitem{errors}
+Hao Zhong and Zhendong Su.
+\newblock Detecting api documentation errors.
+
+\bibitem{apiex}
+Get user accounts.
 
 \end{thebibliography}
