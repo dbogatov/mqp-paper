@@ -1,15 +1,15 @@
 \documentclass[12pt]{report}
 
 \usepackage[left=1in, right=1in]{geometry}
-\usepackage{fancyhdr}
+\usepackage{fancyhdr}						% layout, headers and footers
 \pagestyle{fancy}
 
 
-\usepackage{graphicx}
-\usepackage{enumitem}
-\usepackage{geometry}
+\usepackage{graphicx}						% include pictures
+\usepackage{enumitem}						% enumeration
+\usepackage{geometry}						% margins and layout
 
-\usepackage{listings}
+\usepackage{listings}						% code listings
 \lstset{language=Java, numbers=left}
 \usepackage[usenames, dvipsnames]{color}
 
@@ -19,12 +19,12 @@
 \newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
 
 
-\usepackage{url}
+\usepackage{url}							% include URLs
 
-\usepackage{setspace}
+\usepackage{setspace}						% doublespacing
 \doublespacing
 
-\usepackage{titlesec}
+\usepackage{titlesec}						% title generation
 \titleformat{\chapter}
     {\large\bfseries} % format
     {}                % label
@@ -43,8 +43,22 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
-\usepackage[nottoc]{tocbibind}
+\usepackage[nottoc]{tocbibind}				% table of contents
 \renewcommand{\bibname}{References}
+
+\usepackage{caption}						% horizontal rule for captions
+
+\DeclareCaptionFormat{myformat}{#1#2#3\hrulefill}
+\captionsetup[figure]{format=myformat}
+
+
+\usepackage{tabularx} 						% for 'tabularx' environment and 'X' column type
+\usepackage{ragged2e}  						% for '\RaggedRight' macro (allows hyphenation)
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X} 
+\usepackage{booktabs}  						% for \toprule, \midrule, and \bottomrule macros 
+
+\usepackage{enumitem}						% set line space
+
 
 \begin{document}
 
@@ -64,7 +78,6 @@
 	\listoffigures
 	\listoftables
 	
-
     \include{sections/Introduction}
     
     \include{sections/Background}

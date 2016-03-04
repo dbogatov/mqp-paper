@@ -1,220 +1,316 @@
 \chapter{Methodology}
 
-\section{Metric Builder}
+	\section{Metric Builder}
 
-	\subsection{Back End}
+		\subsection{Back End}
 
-		Implementing a Metric Builder the core question was how to store and compute a user metric. We have come to these two options
+			Implementing a Metric Builder the core question was how to store and compute a user metric.
+			We have come to these two options
 
-		\begin{enumerate}
-			\item
-				Store a user metric data in the database
+			\begin{enumerate}
+				\item
+					Store a user metric data in the database
+					\begin{itemize}
+						\item
+							Pros
+							\begin{itemize}
+								\item
+									Fast to retrive;
+									no computation needed
+							\end{itemize}
+						\item
+							Cons
+							\begin{itemize}
+								\item
+									Waste of space in the database
+								\item
+									User metric data remains ststic;
+									update in the underlying data does not cause an update in the user metric
+							\end{itemize}
+					\end{itemize}
+				\item
+					Store a user metric as a metadata only and compute values on-the-fly (on-demand)
+					\begin{itemize}
+						\item
+							Pros
+							\begin{itemize}
+								\item
+									Efficient use of the database space
+								\item
+									User metric data is always in sync with underlying data
+							\end{itemize}
+						\item
+							Cons
+							\begin{itemize}
+								\item
+									Might be time-consuming to compute
+							\end{itemize}
+					\end{itemize}
+			\end{enumerate}
+
+			Looking at the cons of each option, we attempted to approximate how bad they are.
+			Having $n$ users each creating $m$ user metrics each of which has data for $k$ years
+			we have $m \cdot n \cdot k \cdot 50$ entries in the database.
+			This data would be a snapshot. If any data point in the metrics changes, user metrics remain out of sync.
+
+			For the second option, it was difficult to approximate time it takes to compute a user metric 
+			as it depends on the server load and the number of metrics involved in the user metric. 
+			We implemented the second option and benchmarked it with $3$ users trying to compute 
+			largest possible user metric (all metrics with all states selected). 
+			It took around $1.5$ seconds to load all $3$ user metrics. 
+			This drove our design decision towards the second option - computing metrics on-the-fly.
+
+		\subsection{Front End}
+		
+			The main goals for the front end of the metric builder feature was to design a webpage 
+			that was easy to use, easily accessible, intuitive, and consistent 
+			with the design of other pages on the MATTERS site. 
+			The metric builder feature needed to be a tool that allowed users with any level of 
+			technological background to easily build their metric formula from preexisting metrics, 
+			assign weights to their chosen metrics, and be able to make changes to their metric formula at any time.
+			
+			The front end for the metric builder page was created through the use of HTML, CSS and JavaScript. 
+			To make the page consistent with the rest of the site, code was reused from the Data Explorer page. 
+			The Data Explorer page, as seen in Figure 1, within MATTERS allows users to select 
+			preexisting metrics to visualize the data on the site in multiple different ways, 
+			including a bar chart, line graph, heat map, or table. The framework for the 
+			Data Explorer was the page most similar to how we wanted the metric builder to look, 
+			and we were able to reuse and modify code from that page to create our new feature. 
+			
+			\begin{figure}[t]
+				\centering
+					\fbox{\includegraphics[width=0.75\textwidth]{images/dataexplorer.png}}
+					\caption{Data Explorer page}
+				\label{fig:dataexplorer}
+			\end{figure}
+			
+			Reference somewhere here Figure \ref{fig:dataexplorer}.
+			
+			The Data Explorer page allows users to select metrics and states that they would like to view through the use of the sidebar. 
+			Because the intended users for the metric builder feature are meant to be authorized users with 
+			experience using the MATTERS Data Explorer, we used the sidebar from the Data Explorer as the 
+			basis for how the users would select their metrics on the metric builder page as well.  
+
+	\section{API}
+			
+			Implementing an API, there are 2 problems to consider
+			\begin{itemize}
+				\item
+					Do we implement a closed API or open API? 
+					If closed one, how do we implement authentication.
+				\item
+					Which methods do we put in the API?
+				\item
+					How our query string will look like? 
+					What is the output format?
+			\end{itemize}
+			
+			\subsection{Authentication}
+				
+				Although MATTERS system is a public resource, 
+				we wanted to at least track who uses our API, how and how often. 
+				This requirement made us chose a closed API option. 
+				Thinking of authentication we had a few options
+				
 				\begin{itemize}
 					\item
-						Pros
-						\begin{itemize}
-							\item
-								Fast to retrive; no computation needed
-						\end{itemize}
+						Bind to user
 					\item
-						Cons
-						\begin{itemize}
-							\item
-								Waste of space in the database
-							\item
-								User metric data remains ststic; update in the underlying data does not cause an update in the user metric
-						\end{itemize}
+						Simple \emph{API key} (token) authentication
+					\item
+						Complex \emph{handshake} mechanism					
+					\item
+						\emph{Handshake} mechanism with random value
 				\end{itemize}
-			\item
-				Store a user metric as a metadata only and compute values on-the-fly (on-demand)
+				
+				Binding to API user t regular user would allow any registered user to access API. 
+				Although this kind of authentication is the easiest one to implement we wanted a separate API users.
+				
+				Simple  \emph{API key} authentication is the one when API users are given unique token 
+				(long random string) which they need to provide with each request. 
+				Based on this token system is able to accept or deny connection and trach individual users.
+				
+				\emph{Handshake} mechanism with random value involves the following steps
+				
+				% source http://web.cs.wpi.edu/~cs4513/c16/projects/proj2/index.html
 				\begin{itemize}
 					\item
-						Pros
-						\begin{itemize}
-							\item
-								Efficient use of the database space
-							\item
-								User metric data is always in sync with underlying data
-						\end{itemize}
+						Client sends in username (not password)
 					\item
-						Cons
-						\begin{itemize}
-							\item
-								Might be time-consuming to compute
-						\end{itemize}
+						Server responds by sending back unique random number
+					\item
+						Client encrypts using user's password plus number as key
+					\item
+						Client sends hashed or encrypted value back to server
+					\item
+						Server encrypts using the user's same password plus number as key
+					\item
+						Server compares two hashed or encrypted values, if same then grant access
 				\end{itemize}
-		\end{enumerate}
+				
+				Provided that the main purpose of the API being closed is tracking an activity 
+				for statistical purposes, \emph{API key} aouthentication was impplemented.
 
-		Looking at the cons of each option, we attempted to approximate how bad they are. Having $n$ users each creating $m$ user metrics each of which has data for $k$ years we have $m \cdot n \cdot k \cdot 50$ entries in the database. This data would be a snapshot. If any data point in the metrics changes, user metrics remain out of sync.
+			\subsection{Methods}
+				
+				Main method implemented in the API is \code{api/data?}. 
+				This method returns all data points for given metrics, states and years.
+				
+				Since \code{api/data?} needs specific IDs as arguments, there is a need for supporting 
+				methods which show information about metrics and states. 
+				So we also implementd \code{api/metrics?} and \code{api/states?}.
 
-		For the second option, it was difficult to approximate time it takes to compute a user metric as it depends on the server load and the number of metrics involved in the user metric. We implemented the second option and benchmarked it with $3$ users trying to compute largest possible user metric (all metrics with all states selected). It took around $1.5$ seconds to load all $3$ user metrics. This drove our design decision towards the second option - computing metrics on-the-fly.
+			\subsection{Query string and output format}
+			
+				The are two options for constructing a query string.
+				\begin{itemize}
+					\item
+						\code{api/method?argument1=value1\&argument2=value2\&...}
+					\item
+						\code{api/method/value1/value2/...}
+				\end{itemize}
+				
+				To make out API user friendly we implemented the first option since it clearly 
+				shows which value corresponds to which arguments and these argument-value pairs may be in any order.
+				
+				The final query strings are given is Listing. \ref{apicode}
+				
+				\begin{lstlisting}[
+					frame=lines,
+					caption={API methods examples}, 
+					label=apicode, 
+					backgroundcolor=\color{codegray}, 
+					emph={data,metrics, states},
+					emphstyle=\underbar
+				]
+	/* method */
+	/api/data?metric=&state=&year=&apiKey=
+	/* example */
+	/api/data?metric={16,32}&state=MA&year=*&apiKey=key
 
-	\subsection{Front End}
-	
-	The main goals for the front end of the metric builder feature was to design a webpage that was easy to use, easily accessible, intuitive, and consistent with the design of other pages on the MATTERS site. The metric builder feature needed to be a tool that allowed users with any level of technological background to easily build their metric formula from preexisting metrics, assign weights to their chosen metrics, and be able to make changes to their metric formula at any time.
-	
-	The front end for the metric builder page was created through the use of HTML, CSS and JavaScript. To make the page consistent with the rest of the site, code was reused from the Data Explorer page. The Data Explorer page, as seen in Figure 1, within MATTERS allows users to select preexisting metrics to visualize the data on the site in multiple different ways, including a bar chart, line graph, heat map, or table. The framework for the Data Explorer was the page most similar to how we wanted the metric builder to look, and we were able to reuse and modify code from that page to create our new feature. 
-	
-	\begin{figure}[!ht]
-		\centering
-			\includegraphics[width=0.5\textwidth]{images/dataexplorer.png}
-		\caption{This is what the Data Explorer page of MATTERS looks like. This design was the basis used to create the Metric Builder front end design}
-	\end{figure}
-	
-	The Data Explorer page allows users to select metrics and states that they would like to view through the use of the sidebar. Because the intended users for the metric builder feature are meant to be authorized users with experience using the MATTERS Data Explorer, we used the sidebar from the Data Explorer as the basis for how the users would select their metrics on the metric builder page as well.  
-	
+	/* method */
+	/api/metrics?apiKey=
+	/* example */
+	/api/metrics?apiKey=key
 
-\section{API}
-		
-		Implementing an API, there are 2 problems to consider
-		\begin{itemize}
-			\item
-				Do we implement a closed API or open API? If closed one, how do we implement authentication.
-			\item
-				Which methods do we put in the API?
-			\item
-				How our query string will look like? What is the output format?
-		\end{itemize}
-		
-		\subsection{Authentication}
-			
-			Although MATTERS system is a public resource, we wanted to at least track who uses our API, how and how often. This requirement made us chose a closed API option. Thinking of authentication we had a few options
-			\begin{itemize}
-				\item
-					Bind to user
-				\item
-					Simple \emph{API key} (token) authentication
-				\item
-					Complex \emph{handshake} mechanism					
-				\item
-					\emph{Handshake} mechanism with random value
-			\end{itemize}
-			
-			Binding to API user t regular user would allow any registered user to access API. Although this kind of authentication is the easiest one to implement we wanted a separate API users.
-			
-			Simple  \emph{API key} authentication is the one when API users are given unique token (long random string) which they need to provide with each request. Based on this token system is able to accept or deny connection and trach individual users.
-			
-			\emph{Handshake} mechanism with random value involves the following steps
-			
-			% source http://web.cs.wpi.edu/~cs4513/c16/projects/proj2/index.html
-			\begin{itemize}
-				\item
-					Client sends in username (not password)
-				\item
-					Server responds by sending back unique random number
-				\item
-					Client encrypts using user's password plus number as key
-				\item
-					Client sends hashed or encrypted value back to server
-				\item
-					Server encrypts using the user's same password plus number as key
-				\item
-					Server compares two hashed or encrypted values, if same then grant access
-			\end{itemize}
-			
-			Provided that the main purpose of the API being closed is tracking an activity for statistical purposes, \emph{API key} aouthentication was impplemented.
-
-		\subsection{Methods}
-			
-			Main method implemented in the API is \code{api/data?}. This method returns all data points for given metrics, states and years.
-			
-			Since \code{api/data?} needs specific IDs as arguments, there is a need for supporting methods which show information about metrics and states. So we also implementd \code{api/metrics?} and \code{api/states?}.
-
-		\subsection{Query string and output format}
-		
-			The are two options for constructing a query string.
-			\begin{itemize}
-				\item
-					\code{api/method?argument1=value1\&argument2=value2\&...}
-				\item
-					\code{api/method/value1/value2/...}
-			\end{itemize}
-			
-			To make out API user friendly we implemented the first option since it clearly shows which value corresponds to which arguments and these argument-value pairs may be in any order.
-			
-			The final query strings are given is Listing. \ref{apicode}
-			
-			\begin{lstlisting}[frame=lines, caption={API methods examples}, label=apicode, backgroundcolor=\color{codegray}, emph={data,metrics, states},emphstyle=\underbar]
-/* method */
-/api/data?metric=&state=&year=&apiKey=
-/* example */
-/api/data?metric={16,32}&state=MA&year=*&apiKey=key
-
-/* method */
-/api/metrics?apiKey=
-/* example */
-/api/metrics?apiKey=key
-
-/* method */
-/api/states?apiKey=
-/* example */
-/api/states?apiKey=key
-			\end{lstlisting}
-			
-			The output format JSON (JavaScript Object Notation) was chosen as it both comapact and human and computer readable. 
-			
-		\subsection{Documentation}
-			
-			In order for the developers to know how to make proper API calls, it was necessary to create the API Documentation page for MATTERS. The documentation providers users with full information on the MATTERS API and how to use it, as well as examples of valid API calls and the output that they would return. It is important to ensure that the API documentation is free of both natural language and code sample errors, as this tool is what developers unfamiliar with using the API rely on to understand how to properly access and extract data \cite{errors}. 
-			
-			In order to make the documentation easy to follow, the documentation was divided into sections. The main sections of the API documentation were: an overview, the methods, the parameters, and examples. The layout of the MATTERS API documentation was based on the API Documentation of Tradestation, which had was very simple and easy to follow \cite{apiex}. The Tradestation documentation provided a summary, path, parameters, and examples of both an API call and what it would return. An example of their documentation can be found at: http://tradestation.github.io/webapi-docs/en/users/accounts/. For the MATTERS API, it was necessary to include information on where to access a user’s API key, as well as the proper format to get the data desired for different, years, states, and metrics. The API Documentation sections are explained in the following sections. The full API Documentation can be found in Appendix 1.
-			
-			
-		\subsubsection{Overview}
-			
-		The API Documentation begins with a summary about what the MATTERS API is and what data points the API tool gives users access to. This section also includes an interactive table of contents which allows users to quickly navigate to a specific section of the documentation to look for information. This allows users to easily find what they are looking for without having to scroll through the entire documentation page and provides a brief overview of everything that follows.
-			
+	/* method */
+	/api/states?apiKey=
+	/* example */
+	/api/states?apiKey=key
+				\end{lstlisting}
+				
+				The output format JSON (JavaScript Object Notation) was chosen
+				as it both comapact and human and computer readable. 
+				
+			\subsection{Documentation}
+				
+				In order for the developers to know how to make proper API calls, 
+				it was necessary to create the API Documentation page for MATTERS. 
+				The documentation providers users with full information on the MATTERS API 
+				and how to use it, as well as examples of valid API calls and the output 
+				that they would return. It is important to ensure that the API documentation 
+				is free of both natural language and code sample errors, as this tool is 
+				what developers unfamiliar with using the API rely on to understand how 
+				to properly access and extract data \cite{errors}. 
+				
+				In order to make the documentation easy to follow, the documentation was divided into sections. 
+				The main sections of the API documentation were: an overview, the methods, 
+				the parameters, and examples. The layout of the MATTERS API documentation was based on the 
+				API Documentation of Tradestation, which had was very simple and easy to follow \cite{apiex}. 
+				The Tradestation documentation provided a summary, path, parameters, and examples of both an 
+				API call and what it would return. An example of their documentation can be found at: 
+				http://tradestation.github.io/webapi-docs/en/users/accounts/. For the MATTERS API, 
+				it was necessary to include information on where to access a user’s API key, 
+				as well as the proper format to get the data desired for different, years, states, 
+				and metrics. The API Documentation sections are explained in the following sections. 
+				The full API Documentation can be found in Appendix 1.
+				
+				
+			\subsubsection{Overview}
+				
+				The API Documentation begins with a summary about what the MATTERS API is and what 
+				data points the API tool gives users access to. This section also includes an 
+				interactive table of contents which allows users to quickly navigate to a specific 
+				section of the documentation to look for information. This allows users to easily 
+				find what they are looking for without having to scroll through the entire 
+				documentation page and provides a brief overview of everything that follows.
+				
 			\subsubsection{API Key}
-			
-		Developers without authorization do not have the ability to use the MATTERS API until they have been given an API key. These users are directed to the “Contact Us” page in order to send an email request to become an authorized user with their own key. This section also explains that the API key is used in all API calls in order to validate the user's request.
-			
-		\subsubsection{States}
-			
-			Users are instructed on the proper format needed to retrieve a single state, list of states, or all states. If a user does not know any other information regarding the states in the MATTERS system, they are shown where to find any other information needed via an API request.
-			
-		\subsubsection{Metrics}
-			
-			Users are given the proper format in order to request data for a single metric, list of metrics or all metrics in the MATTERS database. The documentation explains that in order to access data from metrics, the metric parameter values must be the proper metric’s ID number. The user is also given the path to all information regarding the metrics, which will give the user the metric names, ID numbers and details.
-			
-		\subsubsection{Years}
-			
-			Users are given the proper format to request data from specific years. Users may request data for a single year, range of years or all years in the database. 
-			
-		\subsubsection{Examples}
-			
-			Following the parameters and methods of the MATTERS API, the documentation provides the users with two examples of valid API requests and the data which they would return. The example requests include the proper format of the parameter values and the various different types of calls the users can make to request specific data. Under the path name showing an API request the option to display the return value of that specific example. Users can view this to see the return data as well as the JSON format it would be given in. 
-			
+				
+				Developers without authorization do not have the ability to use the MATTERS API 
+				until they have been given an API key. These users are directed to the “Contact Us” 
+				page in order to send an email request to become an authorized user with their own key. 
+				This section also explains that the API key is used in all 
+				API calls in order to validate the user's request.
+				
+			\subsubsection{States}
+				
+				Users are instructed on the proper format needed to retrieve a single state, 
+				list of states, or all states. If a user does not know any other information 
+				regarding the states in the MATTERS system, they are shown where to find any 
+				other information needed via an API request.
+				
+			\subsubsection{Metrics}
+				
+				Users are given the proper format in order to request data for a single metric, 
+				list of metrics or all metrics in the MATTERS database. The documentation explains 
+				that in order to access data from metrics, the metric parameter values must be the 
+				proper metric’s ID number. The user is also given the path to all information 
+				regarding the metrics, which will give the user the metric names, ID numbers and details.
+				
+			\subsubsection{Years}
+				
+				Users are given the proper format to request data from specific years. 
+				Users may request data for a single year, range of years or all years in the database. 
+				
+			\subsubsection{Examples}
+				
+				Following the parameters and methods of the MATTERS API, the documentation provides 
+				the users with two examples of valid API requests and the data which they would return. 
+				The example requests include the proper format of the parameter values and the various 
+				different types of calls the users can make to request specific data. 
+				Under the path name showing an API request the option to display the return value of 
+				that specific example. Users can view this to see the return data as well 
+				as the JSON format it would be given in. 
+				
 
 
-\section{Changes to the database}
+	\section{Changes to the database}
 
-	We had to add two tables to the database - \textbf{APIUser} and \textbf{User Metric}. See Table. \ref{apiusertable} and Table. \ref{umetrictable}.
-	
-	\begin{table}[t!]
-		\centering
-		\begin{tabular}{| >{\bf}c | >{\em}c | l | c |} 
-			\hline
-			Name	& Type			& Comment										& Reference	\\ \hline
-			Id		& INT			& Unigue aoutoincremented identifier			& none		\\
-			Name	& VARCHAR		& API user's name								& none		\\
-			ApiKey	& VARCHAR(160)	& Unique random string; used for authentication	& none		\\
-			\hline
-		\end{tabular}
-		\caption{\textbf{API User} database relation}
-		\label{apiusertable}
-	\end{table}
-	
-	\begin{table}[t!]
-		\centering
-		\begin{tabular}{| >{\bf}c | >{\em}c | l | c |} 
-			\hline
-			Name	& Type			& Comment												& Reference						\\ \hline
-			Id		& INT			& Unigue aoutoincremented identifier					& none							\\
-			Name	& VARCHAR		& User metric's title									& none							\\
-			Value	& TEXT			& JSON formatted list of metric id - coefficient		& none							\\
-			UserID	& INT			& Id of a user - author of the user metric				& Id in \textbf{User} relation	\\
-			\hline
-		\end{tabular}
-		\caption{\textbf{User Metric} database relation}
-		\label{umetrictable}
-	\end{table}
+		We had to add two tables to the database - \textbf{APIUser} and \textbf{User Metric}. 
+		See Table. \ref{apiusertable} and Table. \ref{umetrictable}.
+		
+		\begin{table}[t]
+			\centering
+			\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}c l c @{}} % use 'Y' for first column 
+				\toprule
+				Name	& Type			& Comment										& Reference	\\
+				\midrule
+				
+				Id		& INT			& Unigue aoutoincremented identifier			& none		\\
+				Name	& VARCHAR		& API user's name								& none		\\
+				ApiKey	& VARCHAR(160)	& Unique random string; used for authentication	& none		\\
+				
+				\bottomrule
+			\end{tabularx}
+			\caption{\textbf{API User} database relation}
+			\label{apiusertable}
+		\end{table}
+		
+		\begin{table}[t]
+			\centering
+			\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}c l c @{}} % use 'Y' for first column 
+				\toprule
+				Name	& Type			& Comment											& Reference						\\
+				\midrule
+				
+				Id		& INT			& Unigue aoutoincremented identifier				& none							\\
+				Name	& VARCHAR		& User metric's title								& none							\\
+				Value	& TEXT			& JSON formatted list of metric id - coefficient	& none							\\
+				UserID	& INT			& Id of a user - author of the user metric			& Id in \textbf{User} relation	\\
+				
+				\bottomrule
+			\end{tabularx}
+			\caption{\textbf{User Metric} database relation}
+			\label{umetrictable}
+		\end{table}

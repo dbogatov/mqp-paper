@@ -1,136 +1,212 @@
 \chapter{Testing}
 
-After the backend code and the initial front end of the Metric Builder, API and API Documentation features were complete, our team decided to receive user feedback to see where we could improve our design. We created a two part user study to first test the usability, intuitiveness, and simplicity of the Metric Builder’s user interface and finally to test the clarity and completeness of API Documentation and to make sure there are no errors in the code samples or the natural language text within the documentation. 
+	After the backend code and the initial front end of the Metric Builder, 
+	API and API Documentation features were complete, our team decided to receive 
+	user feedback to see where we could improve our design. We created a two part 
+	user study to first test the usability, intuitiveness, and simplicity of the 
+	Metric Builder’s user interface and finally to test the clarity and completeness 
+	of API Documentation and to make sure there are no errors in the code samples 
+	or the natural language text within the documentation. 
 
-\section{User Testing Procedure}
+	\section{User Testing Procedure}
 
-All of the users were students from WPI and were asked to complete the user tasks on a laptop provided by our team. Even though the users in our study are not the typical expected users of the MATTERS site, we believe that their input is valuable. If the features of the site are easy to use for users inexperienced with the MATTERS site, then we should expect the features to be easy for the authorized users in the future as they are more experienced with the MATTERS site or with developing APIs. After completing the tasks for each part of the user study, the users filled out a survey asking them to rate the easiness of different aspects of the tasks on a scale of one to five. While the users were completing their tasks, our team was also there observing their actions in order to get better insight on their clicking behavior and thought process while navigating the site. We also recorded the operating system and browser the users were doing the study on to note any important differences this may bring about.
+		All of the users were students from WPI and were asked to complete the user tasks on a 
+		laptop provided by our team. Even though the users in our study are not the typical 
+		expected users of the MATTERS site, we believe that their input is valuable. 
+		If the features of the site are easy to use for users inexperienced with the MATTERS site, 
+		then we should expect the features to be easy for the authorized users in the future as they 
+		are more experienced with the MATTERS site or with developing APIs. After completing the tasks 
+		for each part of the user study, the users filled out a survey asking them to rate the 
+		easiness of different aspects of the tasks on a scale of one to five. While the users were 
+		completing their tasks, our team was also there observing their actions in order to get better 
+		insight on their clicking behavior and thought process while navigating the site. 
+		We also recorded the operating system and browser the users were doing the study on to 
+		note any important differences this may bring about.
 
-	\subsection{User Tasks}
-	
-	The user tasks given to the users in the following order and were printed on a sheet of paper so that the users could reference the task details at any time:
-	
-	User Study Tasks: Part 1, Metric Builder feature
-	\begin{enumerate}
-		\item
-			Navigate to the “Metric Builder” feature
-		\item
-			Please create your own metric formula, which includes Unemployment Rate, Corporate Income Tax Rate and Median Household Income, with weights 10, 5, and 22 respectively.
-		\item
-			Name your new metric “My Metric” and save it.
-		\item
-			Please find and select your created metric on the “data explorer” page.
-		\item
-			Edit your metric formula so that Unemployment Rate is no longer a part of the metric and Median Household Income has a weight of 15.
-		\item
-			Save your changes to “My Metric”.
-		\item
-			Please delete “My Metric”
-		\item
-			You will now receive a short survey about your experience using the Metric Builder.	
-	\end{enumerate}
-	
-	User Study Tasks: Part 2, API feature and Documentation
-	\begin{enumerate}
-		\item
-			Navigate to the API Documentation page	
-		\item
-			Your API Key is “secret”
-		\item
-			Please get the data for the metric Unemployment Rate for Massachusetts and Florida for the year 2012 using the API tool and the documentation as a guide
-		\item
-			You will now receive a short survey to complete about your experience using the API and API Documentation.
-	\end{enumerate}
-	The survey that the users completed at the end of each part of the user study can be found in Appendix 2.
-	
-\section{Results}
-
-	Thirteen users completed the user study and filled out the subsequent surveys. Most users performed the tasks on Google Chrome or Safari and all users performed the tasks on either a Mac Operating System or Windows Operating System. All of the data collected from the user studies can be found in Appendix 2. Table \ref{metrictest} shows the average of the users’ ratings on a scale of one to five for each question on the survey regarding the Metric Builder feature.
-	
-		\begin{table}[t!]
-			\centering
-			\begin{tabular}{| >{\bf}c | >{\em}c | l | c |} 
-				\hline
-				Survey Question 	                        & Average User Rating (1-5 scale, 13 users)																		\\ \hline
-				How easy was it to find the Metric Builder?	& 4.385																											\\
-				How easy was it to select the metrics "Unemployment Rate", "Corporate Income Tax Rate", and "Median Household Income" in the metric builder?	& 4.308 	\\
-				How easy was it to weigh the metrics accordingly? & 4.615																									\\
-				How easy was it to name and save your metric? & 5 																											\\
-				How easy was it to find “My Metric” on the data explorer page? & 4.231																						\\
-				How easy was it to edit “My Metric” to make the appropriate changes? & 3.846																				\\
-				How easy was it to remove “My Metric”?	& 5																													\\
-				\hline
-			\end{tabular}
-			\caption{Average ratings for part one of the user study on the Metric Builder}
-			\label{metrictest}
-		\end{table}
-	
-	Table \ref{apitest} shows the average of the users' ratings on a scale of one to five for each question on the survey regarding the API Documentation.
-	
-	\begin{table}[t!]
-		\centering
-		\begin{tabular}{| >{\bf}c | >{\em}c | l | c |} 
-			\hline
-			Survey Question 	                        & Average User Rating (1-5 scale, 12 users)	\\ \hline
-			How easy was it to find the API Documentation?	& 3.25									\\
-			How useful is the API Documentation?	& 4.167										 	\\
-			\hline
-		\end{tabular}
-		\caption{Average ratings for part two of the user study on the API Documentation}
-		\label{apitest}
-	\end{table}
-	
-	Our team considered an average rating of above four to be a good score, meaning that the specific task was easy to perform with our user interface.
-	The only tasks that did not score above our desired rating was for “How easy was it to edit ‘My Metric’ to make the appropriate changes?” and “How easy was it to find the API Documentation?”. User feedback on the open ended survey responses, as well as observations made by our team during the user studies were able to confirm that these two tasks were the most difficult or confusing and provided insight as to how to improve it.
-	 
-	For the metric builder, users noted that they wanted an option to allow them to edit their metric from the Data Explorer page. Our observations confirmed that while on the Data Explorer page, users were actively searching for an edit button while they were viewing their custom made metric. Many times the users would find the "Create new metric” link quickly, which if clicked would bring the user to the Metric Builder page where they could also edit their metric, but were hesitant to click the link because they were not interested in starting over with a new metric.
-	
-	For the API documentation, many users commented on their difficulty finding the link for the API Documentation page. Ultimately, twelve out of the thirteen users did not have much of an issue eventually navigating to the API Documentation link found on the “How to use MATTERS” page as seen in figure 2; however, it was more time consuming than it should have been and many users clicked on multiple other links before navigating to the correct page. The users who stated that they did not know what an API was mainly looked for the API Documentation link in the main dropdown menu of the site before navigating to the ”About” page, followed by clicking on the link to “How to use MATTERS” and finally finding the API section which led them to the documentation. Most of the users who were aware of what an API was, ultimately navigated to the API Documentation page the same way; however, many of them scrolled to the bottom of the home page of the site looking for a link similar to the “Developers” links found at the bottom of many webpages.
-	
-		\begin{figure}[!ht]
-			\centering
-			\includegraphics[width=0.5\textwidth]{images/howto.png}
-		\caption{This is the initial location of the link to the API Documentation found by clicking on "The MATTERS API" text. Users had trouble finding this link, and simpler way to locate the documentation was added}
-		\end{figure}
-	
-\section{Changes made}
-
-	As a result of the user ratings, comments and our observations made while completing the user study tasks, we made a few front end changes to make our features easier to use and easier to find. This included adding a link to the API Documentation in the footer of the site in addition to the link on the "How to use MATTERS" page, as seen in figure 3, and as shown in figure 4, changing the “Create new metric” link on the Data Explorer page to mention that the link would also allow users to edit their metric. 
-	
-		\begin{figure}[!ht]
-			\centering
-			\includegraphics[width=0.5\textwidth]{images/footer.png}
-		\caption{Links were added to the footer of the MATTERS site, including a "For Developers" link targeted toward users who would be interested in using the API and its documentation}
-		\end{figure}
+		\subsection{User Tasks}
 		
-		\begin{figure}[!ht]
-				\centering
-				\includegraphics[width=0.5\textwidth]{images/edit.png}
-			\caption{This section of the Data Explorer page provides users selecting their custom metrics from the sidebar with a link to the Metric Builder page that will allow them to create a new metric or edit existing custom metrics. The wording of the link text was changed to make it clear to the user that the link would bring them to the correct area to edit a metric if desired}
-		\end{figure}
-	
-	These changes led to the final design of the front end of the Metric Builder and API Documentation which can be seen in figures 5 through 8 below:
+			The user tasks given to the users in the following order and were printed on a 
+			sheet of paper so that the users could reference the task details at any time:
+			
+			User Study Tasks: Part 1, Metric Builder feature
+			\textit{
+				\begin{enumerate}[itemsep=-1.5mm]
+					\item
+						Navigate to the “Metric Builder” feature
+					\item
+						Please create your own metric formula, which includes \emph{Unemployment Rate}, 
+						\emph{Corporate Income Tax Rate} and \emph{Median Household Income}, 
+						with weights \emph{10}, \emph{5}, and \emph{22} respectively.
+					\item
+						Name your new metric \emph{"My Metric"} and save it.
+					\item
+						Please find and select your created metric on the “data explorer” page.
+					\item
+						Edit your metric formula so that Unemployment Rate is no longer a part 
+						of the metric and Median Household Income has a weight of 15.
+					\item
+						Save your changes to “My Metric”.
+					\item
+						Please delete “My Metric”
+					\item
+						You will now receive a short survey about your 
+						experience using the Metric Builder.	
+				\end{enumerate}
+			}
+			
+			User Study Tasks: Part 2, API feature and Documentation
+			
+			\textit{
+				\begin{enumerate}[itemsep=-1.5mm]
+					\item
+						Navigate to the API Documentation page
+					\item
+						Your API Key is \emph{"secret"}
+					\item
+						Please get the data for the metric \emph{Unemployment Rate} for \emph{Massachusetts} 
+						and \emph{Florida} for the year \emph{2012} using the API tool and the documentation as a guide
+					\item
+						You will now receive a short survey to complete about your 
+						experience using the API and API Documentation.
+				\end{enumerate}
+			}
+			
+			The survey that the users completed at the end of each part of 
+			the user study can be found in Appendix 2.
+		
+	\section{Results}
 
-		\begin{figure}[!ht]
-			\centering
-			\includegraphics[width=0.5\textwidth]{images/mb.png}
-		\caption{This is the initial view of the Metric Builder page when users first navigate to the page}
-		\end{figure}
+		Thirteen users completed the user study and filled out the subsequent surveys. 
+		Most users performed the tasks on Google Chrome or Safari and all users performed 
+		the tasks on either a Mac Operating System or Windows Operating System. 
+		All of the data collected from the user studies can be found in Appendix 2. 
+		Table \ref{metrictest} shows the average of the users’ ratings on a scale of 
+		one to five for each question on the survey regarding the Metric Builder feature.
 		
-			\begin{figure}[!ht]
+			\begin{table}[t]
 				\centering
-				\includegraphics[width=0.5\textwidth]{images/using.png}
-			\caption{This is what the main content container of the Metric Builder looks like after the user has begun selecting metrics from the sidebar and assigning weights using the sliders}
-		\end{figure}
+				\begin{tabularx}{\textwidth}{@{} Y c @{}} % use 'Y' for first column 
+					\toprule
+					Survey Question																& Average User Rating	\\
+					\midrule
+					
+					How easy was it to find the Metric Builder?									& 4.385					\\
+					How easy was it to select the metrics "Unemployment Rate", 
+					"Corporate Income Tax Rate", and "Median Household Income" 
+					in the metric builder?														& 4.308 				\\
+					How easy was it to weigh the metrics accordingly?							& 4.615					\\
+					How easy was it to name and save your metric? 								& 5.000					\\
+					How easy was it to find “My Metric” on the data explorer page? 				& 4.231					\\
+					How easy was it to edit “My Metric” to make the appropriate changes?		& 3.846					\\
+					How easy was it to remove “My Metric”?										& 5						\\
+					
+					\bottomrule
+				\end{tabularx}
+				\caption{Average ratings for the user study on the Metric Builder}
+				\label{metrictest}
+			\end{table}		
 		
-			\begin{figure}[!ht]
+		Table \ref{apitest} shows the average of the users' ratings on a scale of one to five for each question on the survey regarding the API Documentation.
+			
+			\begin{table}[t]
 				\centering
-				\includegraphics[width=0.5\textwidth]{images/saved.png}
-			\caption{If a user selects a custom made metric to edit or delete, the "Save" button changes to an "Update" button and the "Remove" and "Cancel" buttons appear below the input box for the metric name}
-		\end{figure}
+				\begin{tabularx}{\textwidth}{@{} Y c @{}} % use 'Y' for first column 
+					\toprule
+					Survey Question																& Average User Rating	\\
+					\midrule
+					
+					How easy was it to find the API Documentation?								& 3.250					\\
+					How useful is the API Documentation?										& 4.167					\\
+					
+					\bottomrule
+				\end{tabularx}
+				\caption{Average ratings for the user study on the API Documentation}
+				\label{apitest}
+			\end{table}	
 		
-			\begin{figure}[!ht]
+		Our team considered an average rating of above four to be a good score, 
+		meaning that the specific task was easy to perform with our user interface.
+		The only tasks that did not score above our desired rating was for 
+		“How easy was it to edit ‘My Metric’ to make the appropriate changes?” 
+		and “How easy was it to find the API Documentation?”. User feedback on the 
+		open ended survey responses, as well as observations made by our team during 
+		the user studies were able to confirm that these two tasks were the most 
+		difficult or confusing and provided insight as to how to improve it.
+		
+		For the metric builder, users noted that they wanted an option to 
+		allow them to edit their metric from the Data Explorer page. 
+		Our observations confirmed that while on the Data Explorer page, 
+		users were actively searching for an edit button while they were 
+		viewing their custom made metric. Many times the users would find the 
+		"Create new metric” link quickly, which if clicked would bring the 
+		user to the Metric Builder page where they could also edit their metric, 
+		but were hesitant to click the link because they were not 
+		interested in starting over with a new metric.
+		
+		For the API documentation, many users commented on their difficulty finding 
+		the link for the API Documentation page. Ultimately, twelve out of the thirteen 
+		users did not have much of an issue eventually navigating to the API Documentation 
+		link found on the “How to use MATTERS” page as seen in figure 2; however, it was more 
+		time consuming than it should have been and many users clicked on multiple other 
+		links before navigating to the correct page. The users who stated that they did not 
+		know what an API was mainly looked for the API Documentation link in the main dropdown 
+		menu of the site before navigating to the ”About” page, followed by clicking on the 
+		link to “How to use MATTERS” and finally finding the API section which led them to 
+		the documentation. Most of the users who were aware of what an API was, ultimately 
+		navigated to the API Documentation page the same way; however, many of them scrolled 
+		to the bottom of the home page of the site looking for a link similar to the “Developers” 
+		links found at the bottom of many webpages.
+		
+			\begin{figure}[t]
 				\centering
-				\includegraphics[width=0.5\textwidth]{images/api.png}
-			\caption{This is what the API Documentation page looks like when the user navigates to the page. The full API documentation can be seen in Appendix 1}
-		\end{figure}
+				\fbox{\includegraphics[width=0.5\textwidth]{images/howto.png}}
+				\caption{Initial location of the API Documentation link}
+			\end{figure}
+		
+	\section{Changes made}
+
+		As a result of the user ratings, comments and our observations made while completing 
+		the user study tasks, we made a few front end changes to make our features easier 
+		to use and easier to find. This included adding a link to the API Documentation in 
+		the footer of the site in addition to the link on the "How to use MATTERS" page, as seen 
+		in figure 3, and as shown in figure 4, changing the “Create new metric” link on the 
+		Data Explorer page to mention that the link would also allow users to edit their metric. 
+		
+			\begin{figure}[t]
+				\centering
+					\fbox{\includegraphics[width=0.5\textwidth]{images/footer.png}}
+					\caption{Footer}
+			\end{figure}
+			
+			\begin{figure}[t]
+				\centering
+					\fbox{\includegraphics[width=0.5\textwidth]{images/edit.png}}
+					\caption{Metric Builder's Edit menu}
+			\end{figure}
+			
+		These changes led to the final design of the front end of the Metric Builder 
+		and API Documentation which can be seen in figures 5 through 8 below:
+
+			\begin{figure}[t]
+				\centering
+					\fbox{\includegraphics[width=0.5\textwidth]{images/mb.png}}
+					\caption{Metric Builder}
+			\end{figure}
+			
+			\begin{figure}[t]
+				\centering
+					\fbox{\includegraphics[width=0.5\textwidth]{images/using.png}}
+					\caption{Metric Builder's canvas}
+			\end{figure}
+			
+			\begin{figure}[t]
+				\centering
+					\fbox{\includegraphics[width=0.5\textwidth]{images/saved.png}}
+					\caption{"Save" menu}
+			\end{figure}
+			
+			\begin{figure}[t]
+				\centering
+					\fbox{\includegraphics[width=0.5\textwidth]{images/api.png}}
+					\caption{API Documentation page}
+			\end{figure}
