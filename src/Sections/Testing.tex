@@ -1,10 +1,10 @@
 \chapter{Testing}
 
-	After the backend code and the initial front end of the Metric Builder, 
+	After the back end code and the initial front end of the Metric Builder, 
 	API and API Documentation features were complete, our team decided to receive 
 	user feedback to see where we could improve our design. We created a two part 
 	user study to first test the usability, intuitiveness, and simplicity of the 
-	Metric Builder’s user interface and finally to test the clarity and completeness 
+	Metric Builder's user interface and finally to test the clarity and completeness 
 	of API Documentation and to make sure there are no errors in the code samples 
 	or the natural language text within the documentation. 
 
@@ -40,7 +40,7 @@
 					\item
 						Name your new metric \emph{"My Metric"} and save it.
 					\item
-						Please find and select your created metric on the “data explorer” page.
+						Please find and select your created metric on the “Data Explorer” page.
 					\item
 						Edit your metric formula so that Unemployment Rate is no longer a part 
 						of the metric and Median Household Income has a weight of 15.
@@ -80,7 +80,7 @@
 		Most users performed the tasks on Google Chrome or Safari and all users performed 
 		the tasks on either a Mac Operating System or Windows Operating System. 
 		All of the data collected from the user studies can be found in Appendix 2. 
-		Table \ref{metrictest} shows the average of the users’ ratings on a scale of 
+		Table \ref{metrictest} shows the average of the users' ratings on a scale of 
 		one to five for each question on the survey regarding the Metric Builder feature.
 		
 			\begin{table}[t]
@@ -93,10 +93,10 @@
 					How easy was it to find the Metric Builder?									& 4.385					\\
 					How easy was it to select the metrics "Unemployment Rate", 
 					"Corporate Income Tax Rate", and "Median Household Income" 
-					in the metric builder?														& 4.308 				\\
+					in the Metric Builder?														& 4.308 				\\
 					How easy was it to weigh the metrics accordingly?							& 4.615					\\
 					How easy was it to name and save your metric? 								& 5.000					\\
-					How easy was it to find “My Metric” on the data explorer page? 				& 4.231					\\
+					How easy was it to find “My Metric” on the Data Explorer page? 				& 4.231					\\
 					How easy was it to edit “My Metric” to make the appropriate changes?		& 3.846					\\
 					How easy was it to remove “My Metric”?										& 5						\\
 					
@@ -127,13 +127,13 @@
 		Our team considered an average rating of above four to be a good score, 
 		meaning that the specific task was easy to perform with our user interface.
 		The only tasks that did not score above our desired rating was for 
-		“How easy was it to edit ‘My Metric’ to make the appropriate changes?” 
+		“How easy was it to edit 'My Metric' to make the appropriate changes?” 
 		and “How easy was it to find the API Documentation?”. User feedback on the 
 		open ended survey responses, as well as observations made by our team during 
 		the user studies were able to confirm that these two tasks were the most 
 		difficult or confusing and provided insight as to how to improve it.
 		
-		For the metric builder, users noted that they wanted an option to 
+		For the Metric Builder, users noted that they wanted an option to 
 		allow them to edit their metric from the Data Explorer page. 
 		Our observations confirmed that while on the Data Explorer page, 
 		users were actively searching for an edit button while they were 
@@ -143,13 +143,13 @@
 		but were hesitant to click the link because they were not 
 		interested in starting over with a new metric.
 		
-		For the API documentation, many users commented on their difficulty finding 
+		For the API Documentation, many users commented on their difficulty finding 
 		the link for the API Documentation page. Ultimately, twelve out of the thirteen 
 		users did not have much of an issue eventually navigating to the API Documentation 
-		link found on the “How to use MATTERS” page as seen in figure 2; however, it was more 
+		link found on the “How to use MATTERS” page as seen in Figure \ref{fig:how}; however, it was more 
 		time consuming than it should have been and many users clicked on multiple other 
 		links before navigating to the correct page. The users who stated that they did not 
-		know what an API was mainly looked for the API Documentation link in the main dropdown 
+		know what an API was mainly looked for the API Documentation link in the main drop-down 
 		menu of the site before navigating to the ”About” page, followed by clicking on the 
 		link to “How to use MATTERS” and finally finding the API section which led them to 
 		the documentation. Most of the users who were aware of what an API was, ultimately 
@@ -159,8 +159,9 @@
 		
 			\begin{figure}[t]
 				\centering
-				\fbox{\includegraphics[width=0.5\textwidth]{images/howto.png}}
+				\fbox{\includegraphics[width=0.75\textwidth]{images/howto.png}}
 				\caption{Initial location of the API Documentation link}
+				\label{fig:how}
 			\end{figure}
 		
 	\section{Changes made}
@@ -169,44 +170,54 @@
 		the user study tasks, we made a few front end changes to make our features easier 
 		to use and easier to find. This included adding a link to the API Documentation in 
 		the footer of the site in addition to the link on the "How to use MATTERS" page, as seen 
-		in figure 3, and as shown in figure 4, changing the “Create new metric” link on the 
+		in Figure \ref{fig:footer}, and as shown in Figure \ref{fig:edit}, changing the “Create new metric” link on the 
 		Data Explorer page to mention that the link would also allow users to edit their metric. 
 		
 			\begin{figure}[t]
 				\centering
-					\fbox{\includegraphics[width=0.5\textwidth]{images/footer.png}}
+					\fbox{\includegraphics[width=0.75\textwidth]{images/footer.png}}
 					\caption{Footer}
+					\label{fig:footer}
 			\end{figure}
 			
 			\begin{figure}[t]
 				\centering
 					\fbox{\includegraphics[width=0.5\textwidth]{images/edit.png}}
-					\caption{Metric Builder's Edit menu}
+					\caption{Data Explorer sidebar with edit link}
+					\label{fig:edit}
 			\end{figure}
 			
 		These changes led to the final design of the front end of the Metric Builder 
-		and API Documentation which can be seen in figures 5 through 8 below:
+		and API Documentation which can be seen in the figures below. Figures \ref{fig:mb} and \ref{fig:inuse} show the Metric Builder page when a user first visits 
+		the page and after a user has selected and assigned weights to some of the metrics from the Metric Selection column of the sidebar. Once the user has decided to save their metric formula, 
+		if they choose to go back and edit any part of it, the "Save" button will be replaced by an "Update" button and options are added to "Cancel" any changes or remove the custom metric completely. 
+		These additional options can all be seen in Figure \ref{fig:save}. Finally, there were no changes that needed to made to the API Documentation itself as a result of the user testing. 
+		Figure \ref{fig:docs}, shows the API Documentation page as it appears when a user first navigate to the page from either the footer or the "How To Use MATTERS" page.
 
 			\begin{figure}[t]
 				\centering
-					\fbox{\includegraphics[width=0.5\textwidth]{images/mb.png}}
+					\fbox{\includegraphics[width=0.75\textwidth]{images/mb.png}}
 					\caption{Metric Builder}
+					\label{fig:mb}
 			\end{figure}
 			
 			\begin{figure}[t]
 				\centering
-					\fbox{\includegraphics[width=0.5\textwidth]{images/using.png}}
+					\fbox{\includegraphics[width=0.75\textwidth]{images/using.png}}
 					\caption{Metric Builder's canvas}
+					\label{fig:inuse}
 			\end{figure}
 			
 			\begin{figure}[t]
 				\centering
-					\fbox{\includegraphics[width=0.5\textwidth]{images/saved.png}}
+					\fbox{\includegraphics[width=0.75\textwidth]{images/saved.png}}
 					\caption{"Save" menu}
+					\label{fig:save}
 			\end{figure}
 			
 			\begin{figure}[t]
 				\centering
-					\fbox{\includegraphics[width=0.5\textwidth]{images/api.png}}
+					\fbox{\includegraphics[width=0.75\textwidth]{images/api.png}}
 					\caption{API Documentation page}
+					\label{fig:docs}
 			\end{figure}

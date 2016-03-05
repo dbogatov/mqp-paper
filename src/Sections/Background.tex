@@ -1,6 +1,6 @@
 \chapter{Background and Related Work}
 
-	The creation of a metric builder page and an API for the MATTERS site is a 
+	The creation of a Metric Builder page and an API for the MATTERS site is a 
 	result of two prior project groups and additional efforts by WPI students 
 	who worked to establish the initial features and the design framework for 
 	MATTERS to exist. The initial development of MATTERS came from a team of 
@@ -21,11 +21,11 @@
 	of the MATTERS dashboard, a team of students working on their Major Qualifying 
 	Project (MQP) for WPI then worked to improve the administration center and the 
 	data integration for the dashboard. This involved the data integration pipeline 
-	manager as well as the Administration Center’s development to allow for MHTC 
+	manager as well as the Administration Center's development to allow for MHTC 
 	and other administrators who had access to be able to easily upload their 
 	desired data and metrics, as well as an easy way to view this data on the 
 	administrative end. This MQP team was able to integrate 20 new data sources 
-	for the MATTERS dashboard, make the Administration Center useable for 
+	for the MATTERS dashboard, make the Administration Center usable for 
 	non-technical users, and improve upon the look and feel of the MATTERS 
 	dashboard as a whole \cite{iqp}.
 
@@ -34,7 +34,7 @@
 	\section{Requirements}
 
 		The main goal of creating an API for MATTERS as well as creating the Metric 
-		Buidler page for the site and what it would entail, required looking into other 
+		Builder page for the site and what it would entail, required looking into other 
 		similar features of different sites and making decisions regarding implementation,
 		design and security features for these aspects of the MATTERS site.
 
@@ -42,13 +42,13 @@
 
 		An API is an Application Programming Interface. APIs are tools that allow other 
 		programs to interact with the software program that the API belongs to without 
-		having to give someone complete access to your codebase. In a sense they expose 
+		having to give someone complete access to your code base. In a sense they expose 
 		some of the internal workings of software to the public but in a way that is 
 		limited by what the API chooses to provide. APIs aid in providing a way to share 
 		a potentially large amount of data in an efficient way. According to the chief 
-		data officer of Philadelphia, Mark Headd, APIs “allow a specific audience to use 
+		data officer of Philadelphia, Mark Headd, APIs "allow a specific audience to use 
 		data more quickly, easily, and efficiently when they are looking to do something 
-		specific with the information.” APIs are beneficial for not only keeping certain 
+		specific with the information." APIs are beneficial for not only keeping certain 
 		aspects of code private, but also for saving users time. Even in cases of open 
 		source programs where all of the code for a program is visible, the number of 
 		code can be so large that it is inefficient to search through the whole code base 
@@ -58,7 +58,7 @@
 		information and research with many people. An advantage of an API being an automated 
 		tool is that it can process a large number requests without any added cost and work 
 		from the developers. APIs also present the data requested in a manner that is useful 
-		and easily manipulated for the users’ purposes. For APIs whose goals are to share 
+		and easily manipulated for the users' purposes. For APIs whose goals are to share 
 		certain data across systems there is a great benefit efficiency wise, as many manual 
 		procedures are cut out by the APIs automatic generation. When these tasks are done 
 		manually, they waste time and are both laborious and repetitive, as well as being more 
@@ -74,22 +74,22 @@
 
 	One important step to gaining the full benefits from an API is making sure that the API is 
 	secure. This can be achieved through requiring authentication and authorization of users 
-	before they gain access to the API’s features. It is good practice to ensure that the users 
+	before they gain access to the API's features. It is good practice to ensure that the users 
 	are who they say they are and that they are given permission before using data or parts of 
-	a developer’s program. This also allows for a record of who exactly is accessing the data, 
+	a developer's program. This also allows for a record of who exactly is accessing the data, 
 	in the event that there is an issue so that a specific user can be tracked down \cite{jisc}.
 
 	In addition to creating the API for a site, it is necessary to create good documentation to 
 	accompany the API, to make the API as user friendly and simplistic as possible. 
-	API documentation provides developers with everything that they need to know in a concise 
-	manner in order to use the API’s features with other applications. The API documentation 
+	API Documentation provides developers with everything that they need to know in a concise 
+	manner in order to use the API’s features with other applications. The API Documentation 
 	needs to contain the classes, functions and other important aspects of the API \cite{cio}. 
-	The documentation guide allows developers to easily interact with a site’s API and their 
+	The documentation guide allows developers to easily interact with a site's API and their 
 	own code, as many developers style their code in their own unique way. 
 
 	\subsection{Metric Builder}
 
-		The main feature that is to be developed is the metric builder page which will be available 
+		The main feature that is to be developed is the Metric Builder page which will be available 
 		for the registered users on the MATTERS website only. A user will be able to select any 
 		number of the metrics already available in the MATTERS database and combine their data to 
 		create their own personal formula or indicator. The user can then use their created formula 
@@ -102,7 +102,7 @@
 
 		It is important to ensure that many different data types are able to be combined to create 
 		one final value. It is also important to consider the effects that certain data types will 
-		have on the final value received from the user’s indicator. For example, the MATTERS database 
+		have on the final value received from the user's indicator. For example, the MATTERS database 
 		contains rankings, percentages, nominal values, and other data types. Certain data types could 
 		end up dominating in a user created indicator when combined with significantly smaller value 
 		data types. There are also complexities involved with certain data types that are represented in 
@@ -112,17 +112,17 @@
 		performing in that area. 
 
 		Finally, there are many metrics that do not contain a value for every single year that other 
-		metrics contain. Situations where one metric being used in the user’s metric builder equation
+		metrics contain. Situations where one metric being used in the user's Metric Builder equation
 		does not contain values for years that another metric being used in the same equation need to be 
 		considered. There needs to be a uniform solution for what to do in these instances in a way that 
 		does not deceive the users of the indicator, as this would affect the calculations and following 
 		visualizations across years where these issues exist.
 
 		These factors need to be taken into consideration in order to provide accurate and understandable 
-		visualizations and results when users create their own indicator in the metric builder. It is for 
+		visualizations and results when users create their own indicator in the Metric Builder. It is for 
 		this reason good to consider special handling or removal of certain data types, as well as potential 
 		ways to normalize the final numerical values received from the formulas the users have created in 
-		the metric builder.
+		the Metric Builder.
 
 		We looked at various economic indicators to come up with an idea for how to allow our users to 
 		combine sets of data to use for comparisons. One common approach in economic indicators is to use 

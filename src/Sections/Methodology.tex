@@ -15,7 +15,7 @@
 							Pros
 							\begin{itemize}
 								\item
-									Fast to retrive;
+									Fast to retrieve;
 									no computation needed
 							\end{itemize}
 						\item
@@ -24,7 +24,7 @@
 								\item
 									Waste of space in the database
 								\item
-									User metric data remains ststic;
+									User metric data remains static;
 									update in the underlying data does not cause an update in the user metric
 							\end{itemize}
 					\end{itemize}
@@ -62,19 +62,19 @@
 
 		\subsection{Front End}
 		
-			The main goals for the front end of the metric builder feature was to design a webpage 
+			The main goals for the front end of the Metric Builder feature was to design a webpage 
 			that was easy to use, easily accessible, intuitive, and consistent 
 			with the design of other pages on the MATTERS site. 
-			The metric builder feature needed to be a tool that allowed users with any level of 
+			The Metric Builder feature needed to be a tool that allowed users with any level of 
 			technological background to easily build their metric formula from preexisting metrics, 
 			assign weights to their chosen metrics, and be able to make changes to their metric formula at any time.
 			
-			The front end for the metric builder page was created through the use of HTML, CSS and JavaScript. 
+			The front end for the Metric Builder page was created through the use of HTML, CSS and JavaScript. 
 			To make the page consistent with the rest of the site, code was reused from the Data Explorer page. 
-			The Data Explorer page, as seen in Figure 1, within MATTERS allows users to select 
+			The Data Explorer page, as seen in \ref{fig:dataexplorer}, within MATTERS allows users to select 
 			preexisting metrics to visualize the data on the site in multiple different ways, 
 			including a bar chart, line graph, heat map, or table. The framework for the 
-			Data Explorer was the page most similar to how we wanted the metric builder to look, 
+			Data Explorer was the page most similar to how we wanted the Metric Builder to look, 
 			and we were able to reuse and modify code from that page to create our new feature. 
 			
 			\begin{figure}[t]
@@ -84,12 +84,31 @@
 				\label{fig:dataexplorer}
 			\end{figure}
 			
-			Reference somewhere here Figure \ref{fig:dataexplorer}.
-			
 			The Data Explorer page allows users to select metrics and states that they would like to view through the use of the sidebar. 
-			Because the intended users for the metric builder feature are meant to be authorized users with 
+			Because the intended users for the Metric Builder feature are meant to be authorized users with 
 			experience using the MATTERS Data Explorer, we used the sidebar from the Data Explorer as the 
-			basis for how the users would select their metrics on the metric builder page as well.  
+			basis for how the users would select their metrics on the Metric Builder page as well. Since the Metric Builder does not need a user to select states, 
+			that part of the sidebar was removed. We also removed rankings from the metric selection column of the sidebar since rankings are manipulations of 
+			various other metrics already found in the database. 
+			
+			Once a user selects the metrics they wish to use in order to create their own metric formula, they have the ability to assign each of them different weights 
+			to decide how much of a factor each of the metric's data will be in the formula. To adjust the weight of a metric, users can use the sliders that appear under 
+			each metric that they have selected. The sliders work horizontally from left to right and allow a weight from zero (which would be the same as not including the metric) 
+			to one hundred. Users can click on a section of the slider to move to that weight, click and drag to a specific weight or use the arrow keys to move the slider's value up or down. 
+			The idea for the sliders came from a New York Times site which allows users to interactively calculate their rent and other values using visual sliders \ref{slider}. The sliders are 
+			visually appealing and simple to use and understand.
+			
+			The Metric Builder displays options to name the user's custom metric, save their metric and also go back and edit or delete the metric they have created. There is a 
+			simple to use button that says "Remove" next to each metric chosen, making it easy for users to change the metrics included in their formula. The input 
+			box to name the custom metric and save the changes can be found below all of the chosen metrics and sliders. This was done to help users and encourage them to 
+			properly weigh all the selected metrics before leaving saving their custom metric formula to use, as users typically look at a webpage from top to bottom.
+		
+			Finally, above all of the metrics selected is a box displaying the basics of their created metric formula. As the users update metric selections and their various weights,
+			the formula will update and show the basics of the math that needs to be done on the back end. This includes showing the users that they are 
+			multiplying each data point by the chosen weight before adding each metric's data values together, and that sum is being divided by the total weight as a weighted average approach. 
+			This is shown in a simple way to make sure that users can follow along and are aware of exactly what they changing when they adjust their formulas. 
+			Once content, each time a user saves and updates their formula they will be prompted and subsequently directed to the Data Explorer page where they can begin using their custom metrics and displaying the data with the various visualization options.
+			
 
 	\section{API}
 			
@@ -128,7 +147,7 @@
 				
 				Simple  \emph{API key} authentication is the one when API users are given unique token 
 				(long random string) which they need to provide with each request. 
-				Based on this token system is able to accept or deny connection and trach individual users.
+				Based on this token system is able to accept or deny connection and track individual users.
 				
 				\emph{Handshake} mechanism with random value involves the following steps
 				
@@ -149,7 +168,7 @@
 				\end{itemize}
 				
 				Provided that the main purpose of the API being closed is tracking an activity 
-				for statistical purposes, \emph{API key} aouthentication was impplemented.
+				for statistical purposes, \emph{API key} authentication was implemented.
 
 			\subsection{Methods}
 				
@@ -158,7 +177,7 @@
 				
 				Since \code{api/data?} needs specific IDs as arguments, there is a need for supporting 
 				methods which show information about metrics and states. 
-				So we also implementd \code{api/metrics?} and \code{api/states?}.
+				So we also implemented \code{api/metrics?} and \code{api/states?}.
 
 			\subsection{Query string and output format}
 			
@@ -208,19 +227,19 @@
 				it was necessary to create the API Documentation page for MATTERS. 
 				The documentation providers users with full information on the MATTERS API 
 				and how to use it, as well as examples of valid API calls and the output 
-				that they would return. It is important to ensure that the API documentation 
+				that they would return. It is important to ensure that the API Documentation 
 				is free of both natural language and code sample errors, as this tool is 
 				what developers unfamiliar with using the API rely on to understand how 
 				to properly access and extract data \cite{errors}. 
 				
 				In order to make the documentation easy to follow, the documentation was divided into sections. 
-				The main sections of the API documentation were: an overview, the methods, 
-				the parameters, and examples. The layout of the MATTERS API documentation was based on the 
+				The main sections of the API Documentation were: an overview, the methods, 
+				the parameters, and examples. The layout of the MATTERS API Documentation was based on the 
 				API Documentation of Tradestation, which had was very simple and easy to follow \cite{apiex}. 
 				The Tradestation documentation provided a summary, path, parameters, and examples of both an 
 				API call and what it would return. An example of their documentation can be found at: 
 				http://tradestation.github.io/webapi-docs/en/users/accounts/. For the MATTERS API, 
-				it was necessary to include information on where to access a user’s API key, 
+				it was necessary to include information on where to access a user's API key, 
 				as well as the proper format to get the data desired for different, years, states, 
 				and metrics. The API Documentation sections are explained in the following sections. 
 				The full API Documentation can be found in Appendix 1.
@@ -255,7 +274,7 @@
 				Users are given the proper format in order to request data for a single metric, 
 				list of metrics or all metrics in the MATTERS database. The documentation explains 
 				that in order to access data from metrics, the metric parameter values must be the 
-				proper metric’s ID number. The user is also given the path to all information 
+				proper metric's ID number. The user is also given the path to all information 
 				regarding the metrics, which will give the user the metric names, ID numbers and details.
 				
 			\subsubsection{Years}
@@ -287,7 +306,7 @@
 				Name	& Type			& Comment										& Reference	\\
 				\midrule
 				
-				Id		& INT			& Unigue aoutoincremented identifier			& none		\\
+				Id		& INT			& Unique auto-incremented identifier			& none		\\
 				Name	& VARCHAR		& API user's name								& none		\\
 				ApiKey	& VARCHAR(160)	& Unique random string; used for authentication	& none		\\
 				
@@ -304,7 +323,7 @@
 				Name	& Type			& Comment											& Reference						\\
 				\midrule
 				
-				Id		& INT			& Unigue aoutoincremented identifier				& none							\\
+				Id		& INT			& Unique auto-incremented identifier				& none							\\
 				Name	& VARCHAR		& User metric's title								& none							\\
 				Value	& TEXT			& JSON formatted list of metric id - coefficient	& none							\\
 				UserID	& INT			& Id of a user - author of the user metric			& Id in \textbf{User} relation	\\
