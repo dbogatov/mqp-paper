@@ -42,7 +42,7 @@
 			
 			\begin{description}[itemsep=-1.5mm, align=right,labelwidth=3cm]
 				\item [Statistics]
-					holds metrics' data in a form of a year, state, metric and value tuple;
+					holds metrics' data in the form of a year, state, metric and value tuple;
 				\item [States]
 					holds states' metadata like name, abbreviation and if it is a peer state;
 				\item [Metrics]
@@ -55,18 +55,18 @@
 		
 			The business logic of the system resides on a Java-based server. Spring framework is 
 			used as a server architecture solution. Front end request that comes to the system goes 
-			through controllers which, in turn, invoke services. Services query data layer and return 
+			through controllers which, in turn, invoke services. Services query the data layer and return 
 			data stored	in models. These data models get pushed back to the front end.
 			
 		\subsection{View}
 			
 			The presentation layer is represented by the HTML based website. Client side generates 
 			queries to the server via JavaScript AJAX calls, then uses returned data to generate the content.
-			Website has a significant amount of logic on the client side as it needs to build 
+			The website has a significant amount of logic on the client side as it needs to build 
 			tables, plots and charts. The two main JavaScript libraries used on the client side are jQuery and D3.
 			jQuery makes it easy to manipulate DOM while D3 is used for generating vector based plots and charts.
 			
-			Visual representation is based on the responsive Twitter Bootstrap 3 framework 
+			Visual representation is based on the responsive Twitter Bootstrap 3 framework, 
 			which is a collection of CSS classes and small JavaScript snippets. 
 
 	\section{Requirements}
