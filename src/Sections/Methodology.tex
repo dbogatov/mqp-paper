@@ -7,10 +7,10 @@
 			Implementing a Metric Builder the core question was how to store and compute a user metric.
 			We have come to these two options
 
-			\begin{enumerate}
+			\begin{enumerate}[itemsep=-1.5mm]
 				\item
 					Store a user metric data in the database
-					\begin{itemize}
+					\begin{itemize}[itemsep=-1.5mm]
 						\item
 							Pros
 							\begin{itemize}
@@ -30,7 +30,7 @@
 					\end{itemize}
 				\item
 					Store a user metric as a metadata only and compute values on-the-fly (on-demand)
-					\begin{itemize}
+					\begin{itemize}[itemsep=-1.5mm]
 						\item
 							Pros
 							\begin{itemize}
@@ -202,20 +202,20 @@
 					emph={data,metrics, states},
 					emphstyle=\underbar
 				]
-	/* method */
-	/api/data?metric=&state=&year=&apiKey=
-	/* example */
-	/api/data?metric={16,32}&state=MA&year=*&apiKey=key
+/* method */
+/api/data?metric=&state=&year=&apiKey=
+/* example */
+/api/data?metric={16,32}&state=MA&year=*&apiKey=key
 
-	/* method */
-	/api/metrics?apiKey=
-	/* example */
-	/api/metrics?apiKey=key
+/* method */
+/api/metrics?apiKey=
+/* example */
+/api/metrics?apiKey=key
 
-	/* method */
-	/api/states?apiKey=
-	/* example */
-	/api/states?apiKey=key
+/* method */
+/api/states?apiKey=
+/* example */
+/api/states?apiKey=key
 				\end{lstlisting}
 				
 				The output format JSON (JavaScript Object Notation) was chosen
