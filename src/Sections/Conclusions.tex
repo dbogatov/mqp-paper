@@ -1,3 +1,34 @@
 \chapter{Conclusion}
 
-\section{Recommendations}
+	In this project we have built two services for the MATTERS site. The API 
+	provides a way for other computer-based systems to work with the MATTERS 
+	system. Specifically, it is now possible to query MATTERS data directly, 
+	bypassing presentation layer. The other feature is a Metrics Builder. 
+	This subsystem allows users to create their own unique metrics based on 
+	the existing metrics. Users are able to work with their metrics seamlessly 
+	in Data Explorer as if they were just regular ones.  
+
+	\section{Recommendations}
+		
+		The ways to improve the MATTERS site that might be a good task for the 
+		future teams are
+		
+		\begin{enumerate}
+			\item
+				Refactor client side and server side code. Since the system 
+				has been developed by the number of teams with different design 
+				patterns and approaches, there is a significant technical debt. 
+				It might be worth spending some time rewriting some parts of the system 
+				according to the latest coding and technical standards.
+			\item
+				Documentation. Right now there is a steep learning curve for the new 
+				developers who start working on the project. Good documentation may 
+				dramatically decrease a time it takes for developers to start working 
+				on the project.
+			\item
+				Role managemnet. Right now the system supports regular users and API users. 
+				Each user metric must have one and only one author. It might be a good idea 
+				to merge these two user entities and introduce shared user metrics that are 
+				not binded to specific users.
+		\end{enumerate}
+		
