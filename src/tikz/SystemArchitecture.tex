@@ -1,0 +1,43 @@
+% Define block styles
+\tikzstyle{request} = 
+	[rectangle, dashed, rounded corners, draw, fill=gray!30, text width=7em, 
+	text centered, minimum height=3em]
+	
+\tikzstyle{layer} =
+	[rectangle, draw, fill=gray!50, 
+	text width=10em, text centered, rounded corners, minimum height=4em]
+
+\tikzstyle{line} = [draw]
+
+\tikzstyle{explanation} = 
+	[draw, ellipse,fill=gray!70, node distance=7cm,
+	minimum height = 4em, text width=7em, text centered]
+	
+\begin{tikzpicture}[node distance = 2cm, auto]
+	
+	% Place nodes
+	\node [layer] (view) {View. Client side};
+	\node [explanation, right of=view] (viewexpl) {CSS, JS, HTML};
+	
+	\node [request, below left=0cm and 1cm of view] (ajax) {AJAX call};
+	
+	\node [layer, below of=view, node distance=3cm] (controller) {Controller. Server side};
+	\node [explanation, right of=controller] (controllerexpl) {Java, Spring framework};
+	
+	\node [request, below left=0cm and 1cm of controller] (storedproc) {DB procedure};
+	
+	\node [layer, below of=controller, node distance=3cm] (model) {Model. Data layer};
+	\node [explanation, right of=model] (modelexpl) {PostgreSQL};
+	
+	% Draw edges
+	\path [line] (view) -- node {platform} (viewexpl);
+	\path [line] (controller) -- node {platform} (controllerexpl);
+	\path [line] (model) -- node {platform} (modelexpl);
+	
+	\path [line, -latex'] (view) -| node [near start] {request} (ajax);
+	\path [line, latex'-] (ajax) |- node [near end] {response} (controller);
+	
+	\path [line, -latex'] (controller) -| node [near start] {request} (storedproc);
+	\path [line, latex'-] (storedproc) |- node [near end] {response} (model);
+	
+\end{tikzpicture}
