@@ -59,6 +59,42 @@
 			largest possible user metric (all metrics with all states selected). 
 			It took around $1.5$ seconds to load all $3$ user metrics. 
 			This drove our design decision towards the second option - computing metrics on-the-fly.
+			
+			\subsubsection{Note on normalization and missing values}
+			
+				The basic formula for the user metric is
+				
+				\[
+					V_y = \frac{ \sum_{i \in I} v_{iy} \cdot c_i }{100} 
+				\]
+				
+				where:
+				\begin{itemize}
+					\item
+						$V_y$ is the value of the user metric for the year $y$
+					\item 
+						$I$ is a set of metrics in the user metric
+					\item
+						$v_{iy}$ is a value of $i_\text{th}$ metric for the year
+						$y$
+					\item
+						$c_i$ is a user defined coefficient of $i_{\text{th}}$ 
+						metric ($c \in [0, 100]$) 
+				\end{itemize}
+				
+				However, this does not account for the different magnitudes of different metrics. For example, one metric could be a population and be measured in hundreds of millions, the other one could be taxes, and be measured in percents. If we simply take the average of values in these two metrics, it would not make sense as the value of the higher scale metric (population) will take over the value of the lower scale metric (taxes).
+
+				This problem is solved with \emph{normalization} - adjusting values measured on different scales to a notionally common scale.
+				
+				We used \emph{z-transform} method to normalize data in the user metric. For each year and metric, normalized piece has the following form.
+				
+				\[
+					\text{value}_\text{normalized} = \frac{\text{value}_\text{denormalized} - \text{mean}}{\text{standard deviation}}
+				\]
+				
+				This way we can put together metrics of different scales.
+				
+				The other decision we had to make was about missing values. Different metrics may have values only for certain years. We decided to take the closest older value for the missing year. If there are no values prior to the missing year, we use the oldest value. 
 
 		\subsection{Front End}
 		
