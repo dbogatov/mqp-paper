@@ -48,6 +48,10 @@ Consumer price index - cpi.
 \bibitem{economic}
 The top 10 economic indicators: What to watch and why.
 
+\bibitem{slider}
+Mike Bostock, Shan Carter, and Archie Tse.
+\newblock Is it better to rent or buy.
+
 \bibitem{errors}
 Hao Zhong and Zhendong Su.
 \newblock Detecting api documentation errors.
