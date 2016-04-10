@@ -1,43 +1,49 @@
 \chapter{Background and Related Work}
 
-	The creation of a Metric Builder page and an API for the MATTERS site must leverage as well as 
-	seamlessly integrate with the overall MATTERS site, which has been created by 
-	several prior project groups at WPI. These students worked to establish the initial features 
-	and the design framework for MATTERS to exist. The initial development of MATTERS in Spring of 2014 
-	started with a team of eleven students composed of one undergraduate team completing their Interactive Qualifying Project (IQP), 
-	and 7 WPI graduate students. This team of IQP students researched 
-	and came to the first core decisions regarding the front-end visualization tools for 
-	the MATTERS dashboard \cite{prevreport}. This includes the inclusion of decisions 
-	regarding colors, and visualization types such as charts and tables, that would 
-	be used to the represent the data within the system in a manner that was both 
-	intuitive for the users and a quick way to show analytics results. More importantly, the IQP 
-	team conducted a survey of the MHTC board members to determine their familiarity and 
-	preferences concerning visual interaction components of dashboards. In parallel, 
-	the graduate student teams developed the first back-end version for MATTERS. 
-	They developed components to extract the desired data from diverse websites, 
-	parse and clean this retrieved data, before then uploading it into a 
-	data warehouse. This data would then be called upon to be shown in the various visual 
-	methods for the users \cite{iqp}.
+	The creation of a Metric Builder page and an API for the MATTERS site must 
+	leverage as well as seamlessly integrate with the overall MATTERS site, 
+	which has been created by several prior project groups at WPI. These 
+	students worked to establish the initial features and the design framework 
+	for MATTERS to exist. The initial development of MATTERS in Spring of 2014 
+	started with a team of eleven students composed of one undergraduate team 
+	completing their Interactive Qualifying Project (IQP), and 7 WPI graduate 
+	students. This team of IQP students researched and came to the first core 
+	decisions regarding the front-end visualization tools for the MATTERS 
+	dashboard \cite{prevreport}. This includes the inclusion of decisions 
+	regarding colors, and visualization types such as charts and tables, that 
+	would be used to the represent the data within the system in a manner that 
+	was both intuitive for the users and a quick way to show analytics results. 
+	More importantly, the IQP team conducted a survey of the MHTC board members 
+	to determine their familiarity and preferences concerning visual interaction 
+	components of dashboards. In parallel, the graduate student teams developed 
+	the first back-end version for MATTERS. They developed components to extract 
+	the desired data from diverse websites, parse and clean this retrieved data, 
+	before then uploading it into a data warehouse. This data would then be 
+	called upon to be shown in the various visual methods for the users 
+	\cite{iqp}.
 
-	Following this initial front-end and back-end design and implementation 
-	of the MATTERS dashboard, a team of students working on their Major Qualifying 
-	Project (MQP) at WPI improved the administration center and the 
-	data integration for the dashboard. This involved the data integration Pipeline 
-	Manager. In addition, the Administration Center's development to allow for MHTC 
-	and other administrators who had access to be able to easily upload their 
-	desired data and metrics, as well as an intuitive way to view this data on the 
-	administrative end. This MQP team was able to integrate 20 new data sources 
-	for the MATTERS dashboard, make the Administration Center usable for 
-	non-technical users, and improve upon the look-and-feel of the MATTERS 
-	dashboard as a whole \cite{iqp}.
+	Following this initial front-end and back-end design and implementation of 
+	the MATTERS dashboard, a team of students working on their Major Qualifying 
+	Project (MQP) at WPI improved the administration center and the data 
+	integration for the dashboard. This involved the data integration Pipeline 
+	Manager. In addition, the Administration Center's development to allow for 
+	MHTC and other administrators who had access to be able to easily upload 
+	their desired data and metrics, as well as an intuitive way to view this 
+	data on the administrative end. This MQP team was able to integrate 20 new 
+	data sources for the MATTERS dashboard, make the Administration Center 
+	usable for non-technical users, and improve upon the look-and-feel of the 
+	MATTERS dashboard as a whole \cite{iqp}.
 
 	\section{System Architecture}
 	
-		The MATTERS Website consists of two subsystems - the data acquisition and management \emph{admin panel} and the visual-interaction \emph{dashboard}.
-		While the \emph{admin panel} is used by administrators to work with data 
-		(basic create, read, update, and delete, or CRUD, operations), in this project we focused on the \emph{dashboard} subsystem.
-		This subsystem follows MVC (Model-View-Controller) architecture. You can see its visual 
-		structure in Figure \ref{fig:sysarch}.
+		The MATTERS Website consists of two subsystems - the data acquisition 
+		and management \emph{admin panel} and the visual-interaction 
+		\emph{dashboard}. While the \emph{admin panel} is used by administrators
+		to work with data (basic create, read, update, and delete, or CRUD, 
+		operations), in this project we focused on the \emph{dashboard} 
+		subsystem. This subsystem follows MVC (Model-View-Controller) 
+		architecture. You can see its visual structure in Figure 
+		\ref{fig:sysarch}.
 		
 		\begin{figure}[t]
 			\centering
@@ -49,141 +55,181 @@
 		
 		\subsection{Model}
 			
-			The MATTERS' data layer is built with the PostgreSQL database. The main tables are:
+			The MATTERS' data layer is built with the PostgreSQL database. The 
+			main tables are:
 			
 			\begin{description}[itemsep=-1.5mm, align=right,labelwidth=3cm]
 				\item [Statistics]
-					holds metrics' data in the form of a year, state, metric and value tuple;
+					holds metrics' data in the form of a year, state, metric and 
+					value tuple;
 				\item [States]
-					holds states' metadata like name, abbreviation and if it is a peer state;
+					holds states' metadata like name, abbreviation and if it is 
+					a peer state;
 				\item [Metrics]
-					holds metrics' metadata like description, trend and category;							
+					holds metrics' metadata like description, trend and 
+					category;							
 			\end{description}
 			
-			The access to these tables is provided via stored procedures as a data access layer.
+			The access to these tables is provided via stored procedures as a 
+			data access layer.
 			
 		\subsection{Controller}
 		
-			The business logic of the system resides on a Java-based server. Spring framework is 
-			used as a server architecture solution. A front end request that comes to the system goes 
-			through controllers which, in turn, invoke services. Services query the data layer and return 
-			data stored	in models. These data models get pushed back to the front end.
+			The business logic of the system resides on a Java-based server. 
+			Spring framework is used as a server architecture solution. A front 
+			end request that comes to the system goes through controllers which, 
+			in turn, invoke services. Services query the data layer and return 
+			data stored	in models. These data models get pushed back to the 
+			front end.
 			
 		\subsection{View}
 			
-			The presentation layer is represented by the HTML based website. The client side generates 
-			queries to the server via JavaScript AJAX calls, then use the returned data to generate the content.
-			The website has a significant amount of logic on the client side as it needs to build 
-			tables, plots and charts. The two main JavaScript libraries used on the client side are jQuery and D3.
-			jQuery makes it easy to manipulate DOM while D3 is used for generating vector based plots and charts.
+			The presentation layer is represented by the HTML based website. The
+			client side generates queries to the server via JavaScript AJAX 
+			calls, then use the returned data to generate the content. The 
+			website has a significant amount of logic on the client side as it 
+			needs to build tables, plots and charts. The two main JavaScript 
+			libraries used on the client side are jQuery and D3. jQuery makes it 
+			easy to manipulate DOM while D3 is used for generating vector based 
+			plots and charts.
 			
-			Visual representation and displays are based on the responsive Twitter Bootstrap 3 framework, 
-			which is a collection of CSS classes and small JavaScript snippets. 
+			Visual representation and displays are based on the responsive 
+			Twitter Bootstrap 3 framework, which is a collection of CSS classes 
+			and small JavaScript snippets. 
 
 	\section{Requirements}
 
-		Before we could embark on creating an API for MATTERS as well as designing the Metric 
-		Builder page for the site, we had to conduct research. This included to look into other 
-		similar features of different sites and make decisions regarding implementation,
-		design and security features for these aspects of the MATTERS site.
+		Before we could embark on creating an API for MATTERS as well as 
+		designing the Metric Builder page for the site, we had to conduct 
+		research. This included to look into other similar features of different 
+		sites and make decisions regarding implementation, design and security 
+		features for these aspects of the MATTERS site.
 
 	\subsection{API and Documentation}
 
-		An API is an "Application Programming Interface". APIs are tools that allow other 
-		programs to interact with the software program that the API belongs to without 
-		having to give someone complete access to your code base. In a sense they expose 
-		some of the internal workings of software to the public but in a way that is 
-		limited by what the API chooses to provide. APIs aid in providing a way to share 
-		a potentially large amount of data in an efficient way. According to the chief 
-		data officer of Philadelphia, Mark Headd, APIs "allow a specific audience to use 
-		data more quickly, easily, and efficiently when they are looking to do something 
-		specific with the information." APIs are beneficial for not only keeping certain 
-		aspects of code private, but also for saving users time. Even in cases of open 
-		source programs where all of the code for a program is visible, the
-		code base can be so large that it is inefficient to search through the whole code base 
-		for specific data \cite{govapi}. 
+		An API is an "Application Programming Interface". APIs are tools that 
+		allow other programs to interact with the software program that the API 
+		belongs to without having to give someone complete access to your code 
+		base. In a sense they expose some of the internal workings of software 
+		to the public but in a way that is limited by what the API chooses to 
+		provide. APIs aid in providing a way to share a potentially large 
+		amount of data in an efficient way. According to the chief data officer 
+		of Philadelphia, Mark Headd, APIs "allow a specific audience to use data
+		more quickly, easily, and efficiently when they are looking to do 
+		something specific with the information." APIs are beneficial for not 
+		only keeping certain aspects of code private, but also for saving users 
+		time. Even in cases of open source programs where all of the code for a 
+		program is visible, the code base can be so large that it is inefficient 
+		to search through the whole code base for specific data \cite{govapi}. 
 
-		APIs are beneficial from both a business perspective and for programs that to aim share 
-		information and research with many people. An advantage of an API being an automated 
-		tool is that it can process a large number of requests without any added cost and work 
-		from the developers of the initial site. APIs also present the data requested in a manner that is useful 
-		and easily manipulated for the users' purposes, especially if the users could be programmatic access. 
-		For APIs whose goals are to share 
-		certain data across systems there is a great benefit efficiency wise, as many manual 
-		procedures are cut out by the APIs automatic generation. When these tasks are done 
-		manually, they waste time and are both laborious and repetitive, as well as being more 
-		prone to error; all of these things being costly on the developer end. While it is more 
-		time consuming and costly to develop an API initially, the overall benefit once it is 
-		developed is apparent and can be reaped long-term \cite{govapi}.
+		APIs are beneficial from both a business perspective and for programs 
+		that to aim share information and research with many people. An 
+		advantage of an API being an automated tool is that it can process a 
+		large number of requests without any added cost and work from the 
+		developers of the initial site. APIs also present the data requested in 
+		a manner that is useful and easily manipulated for the users' purposes, 
+		especially if the users could be programmatic access. For APIs whose 
+		goals are to share certain data across systems there is a great benefit 
+		efficiency wise, as many manual procedures are cut out by the APIs 
+		automatic generation. When these tasks are done manually, they waste 
+		time and are both laborious and repetitive, as well as being more prone 
+		to error; all of these things being costly on the developer end. While 
+		it is more time consuming and costly to develop an API initially, the 
+		overall benefit once it is developed is apparent and can be reaped 
+		long-term \cite{govapi}.
 
-		Additionally, APIs not only encourage innovation and the ability to manipulate and 
-		extrapolate data by external collaborators, they provide a means to do so that is 
-		more secure for the group creating the API. They reduce the risk of how and what data 
-		is obtains and encourage good practice for how to properly manage the data 
-		available \cite{readwrite}.
+		Additionally, APIs not only encourage innovation and the ability to 
+		manipulate and extrapolate data by external collaborators, they provide 
+		a means to do so that is more secure for the group creating the API. 
+		They reduce the risk of how and what data is obtains and encourage good 
+		practice for how to properly manage the data available \cite{readwrite}.
 
-	One important step to gaining the full benefit from an API is making sure that the API is 
-	secure. This can be achieved through requiring authentication and authorization of users 
-	before they gain access to the API's features. It is good practice to ensure that the users 
-	are who they say they are and that they are given permission before using data or parts of 
-	a developer's program. This also allows for a record of who is accessing the data, 
-	in the event that there is an issue so that a specific user can be tracked down \cite{jisc}.
+		One important step to gaining the full benefit from an API is making 
+		sure that the API is secure. This can be achieved through requiring 
+		authentication and authorization of users before they gain access to the
+		API's features. It is good practice to ensure that the users are who 
+		they say they are and that they are given permission before using data 
+		or parts of a developer's program. This also allows for a record of who 
+		is accessing the data, in the event that there is an issue so that a 
+		specific user can be tracked down \cite{jisc}.
 
-	In addition to creating the API for a site, it is necessary to create good documentation to 
-	accompany the API, to make the API as user friendly and simplistic as possible. 
-	API Documentation thus must be provided to the developers that details everything that they need to know in a concise 
-	manner in order to use the API’s features with other applications. The API Documentation 
-	needs to contain the classes, functions and other important aspects of the API \cite{cio}. 
-	The documentation guide allows developers to easily interact with a site's API and their 
-	own code, as many developers style their code in their own unique way. 
+		In addition to creating the API for a site, it is necessary to create 
+		good documentation to accompany the API, to make the API as user 
+		friendly and simplistic as possible. API Documentation thus must be 
+		provided to the developers that details everything that they need to 
+		know in a concise manner in order to use the API’s features with other 
+		applications. The API Documentation needs to contain the classes, 
+		functions and other important aspects of the API \cite{cio}. The 
+		documentation guide allows developers to easily interact with a site's 
+		API and their own code, as many developers style their code in their own 
+		unique way. 
 
 	\subsection{Metric Builder}
 
-		The main service that is to be developed by our MQP team is the Metric Builder page. This service will be available 
-		for the registered users on the MATTERS website only. A user will be able to select any 
-		number of the metrics already available in the MATTERS database and combine their data using a custom formula to 
-		create their own personal economic "indicator". The user can then use their created formula 
-		to display the states' rankings based on this indicator. This will allow users to see and 
-		evaluate states based on what they think is most important as a whole or a combination of 
-		various factors, and interpret the data in their own way in a simple manner. By enabling users to 
-		create their own data set from all the metrics available and then provide their own weights 
-		to each of these data values, we are allowing users to see the competitive advantage that each state has 
-		based on how important these metrics are for the user's purpose.
+		The main service that is to be developed by our MQP team is the Metric 
+		number of the metrics already available in the MATTERS database and 
+		combine their data using a custom formula to Builder page. This service 
+		will be available for the registered users on the MATTERS website only. 
+		A user will be able to select any create their own personal economic 
+		"indicator". The user can then use their created formula to display the 
+		states' rankings based on this indicator. This will allow users to see 
+		and evaluate states based on what they think is most important as a 
+		whole or a combination of various factors, and interpret the data in 
+		their own way in a simple manner. By enabling users to create their own 
+		data set from all the metrics available and then provide their own 
+		weights to each of these data values, we are allowing users to see the 
+		competitive advantage that each state has based on how important these 
+		metrics are for the user's purpose.
 
-		It is important to ensure that different data types can be combined to create 
-		one final index value. It is also important to consider the effect that certain data types will 
-		have on the final value computed from the user's indicator formula. For example, the MATTERS database 
-		contains rankings, percentages, nominal values, and other data types. Certain data types could 
-		end up dominating in a user-created indicator when combined with significantly smaller value 
-		data types. There are also complexities involved with certain data types that are represented in 
-		the reverse of the majority of the data types. For example, both rankings and some other data 
-		types use numerical values in which a lower value indicates a better performance by the state, 
-		versus for the majority of other metrics the larger the value is the better a state is 
-		performing in that area. This corresponds to the data type incompatibility problem, requiring us to learn about data normalization and transformation. 
+		It is important to ensure that different data types can be combined to 
+		create one final index value. It is also important to consider the 
+		effect that certain data types will have on the final value computed 
+		from the user's indicator formula. For example, the MATTERS database 
+		contains rankings, percentages, nominal values, and other data types. 
+		Certain data types could end up dominating in a user-created indicator 
+		when combined with significantly smaller value data types. There are 
+		also complexities involved with certain data types that are represented 
+		in the reverse of the majority of the data types. For example, both 
+		rankings and some other data types use numerical values in which a lower 
+		value indicates a better performance by the state, versus for the 
+		majority of other metrics the larger the value is the better a state is 
+		performing in that area. This corresponds to the data type 
+		incompatibility problem, requiring us to learn about data normalization 
+		and transformation. 
 
-		Finally, there are many metrics that do not contain a value for every single year that other 
-		metrics hold a value, the missing value problem. Situations where one metric being used in the user's Metric Builder equation
-		does not contain values for years that another metric being used in the same equation need to be 
-		considered. There needs to be a uniform solution for what to do in these instances in a manner that 
-		does not deceive the users of the indicator, as this would affect the calculations and subsequent 
-		visualizations across years where these issues exist.
+		Finally, there are many metrics that do not contain a value for every 
+		single year that other metrics hold a value, the missing value problem. 
+		Situations where one metric being used in the user's Metric Builder 
+		equation does not contain values for years that another metric being 
+		used in the same equation need to be considered. There needs to be a 
+		uniform solution for what to do in these instances in a manner that does 
+		not deceive the users of the indicator, as this would affect the 
+		calculations and subsequent visualizations across years where these 
+		issues exist.
 
-		These factors need to be taken into consideration to provide accurate and understandable 
-		visualizations, when users create their own indicator in the Metric Builder. It is for 
-		this reason good to consider special handling or removal of certain data types, as well as potential 
-		ways to normalize the final numerical values received from the formulas the users have created in 
-		the Metric Builder.
+		These factors need to be taken into consideration to provide accurate 
+		and understandable visualizations, when users create their own indicator 
+		in the Metric Builder. It is for this reason good to consider special 
+		handling or removal of certain data types, as well as potential ways to 
+		normalize the final numerical values received from the formulas the 
+		users have created in the Metric Builder.
 
-		Lastly, we researched various economic indicators in the literature and on other public sites to come up with an idea for how to allow our users to 
-		combine sets of data to use for comparisons. One common approach in economic indicators is to use 
-		weighted averages \cite{weightedaverage}. For example, one of the most popular economic indicators, 
-		CPI, or the Consumer Price Index, uses weighted averages of data from hundreds of different consumer 
-		goods and services to measure inflation and deflation. Each of the goods considered by the CPI is 
-		weighted based on its importance \cite{cpi}.
+		Lastly, we researched various economic indicators in the literature and 
+		on other public sites to come up with an idea for how to allow our users 
+		to combine sets of data to use for comparisons. One common approach in 
+		economic indicators is to use weighted averages \cite{weightedaverage}. 
+		For example, one of the most popular economic indicators, CPI, or the 
+		Consumer Price Index, uses weighted averages of data from hundreds of 
+		different consumer goods and services to measure inflation and 
+		deflation. Each of the goods considered by the CPI is weighted based on 
+		its importance \cite{cpi}.
 
-		Weighted averages work by taking each number in a given data set, and multiplying the value by 
-		its given weight. This will give you a new value reflecting the product of the data and its weight. 
-		Lastly, we then add all of these products together from the data set to get the total value. Then, we add up the total 
-		of all the weights. Finally divide the total value by the total weight in order to receive the weighted 
-		average of your data set. The weights are used to show the importance that each specific item in a 
-		data set has in order to calculate an overall value of all the data together \cite{economic}.
+		Weighted averages work by taking each number in a given data set, and 
+		multiplying the value by its given weight. This will give you a new 
+		value reflecting the product of the data and its weight. Lastly, we then 
+		add all of these products together from the data set to get the total 
+		value. Then, we add up the total of all the weights. Finally divide the 
+		total value by the total weight in order to receive the weighted average 
+		of your data set. The weights are used to show the importance that each 
+		specific item in a data set has in order to calculate an overall value 
+		of all the data together \cite{economic}.
