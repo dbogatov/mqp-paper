@@ -81,5 +81,74 @@
 			\caption{\textbf{States} database relation sample data}
 			\label{tbl:statestable}
 		\end{table}
+		
+	\chapter{Appendix D. API Output Sample} \label{app:dbsample}
+	
+		\begingroup\onehalfspacing
+	
+		\begin{lstlisting}[
+			frame=lines,
+			tabsize=2,
+			showstringspaces=false,
+			basicstyle=\footnotesize\ttfamily,
+			caption={API Data Method Output Sample}, 
+			label=ls:apioutput, 
+			backgroundcolor=\color{codegray}
+		]
+GET: api/data?state={AL,MA,NH}&metric={18}&year=2012&apiKey=secret
+
+[
+	{
+		"state" : "Alabama", 
+		"metrics" : 
+			[ 
+				{ 
+					"MetricName" : "Total Tech Employment", 
+					"Data" : 
+						[ 
+							{ 
+								"Year" : 2012, 
+								"Value" : 209044.0 
+							} 
+						] 
+				} 
+			] 
+	},
+	{ 
+		"state" : "Massachusetts",
+		"metrics" : 
+			[ 
+				{ 
+					"MetricName" : "Total Tech Employment", 
+					"Data" : 
+						[ 
+							{ 
+								"Year" : 2012,
+								"Value" : 508666.0 
+							} 
+						] 
+				} 
+			] 
+	} ,
+	{ 
+		"state" : "New Hampshire", 
+		"metrics" : 
+			[ 
+				{ 
+					"MetricName" : "Total Tech Employment", 
+					"Data" : 
+						[ 
+							{ 
+								"Year" : 2012, 
+								"Value" : 74200.0 
+							} 
+						] 
+				} 
+			] 
+	}
+]
+		\end{lstlisting}
+		
+		\endgroup
 
 \end{appendices}
