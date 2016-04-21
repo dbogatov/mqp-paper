@@ -1,11 +1,11 @@
 \begin{appendices}
 
-	\chapter{API Documentation} \label{app:apidoc}
+	\chapter{Appendix A. API Documentation} \label{app:apidoc}
 
 		API Documentation can be found in the \emph{Appendices} folder under the
 		name \emph{API Documentation.pdf}.
 
-	\chapter{User Study} \label{app:userstudydocs}
+	\chapter{Appendix B. User Study} \label{app:userstudydocs}
 
 		User study cconsent form can be found in the \emph{Appendices} folder 
 		under the name \emph{User Study Consent Form.pdf}.
@@ -18,5 +18,68 @@
 		
 		Full user survey results and comments can be found in the 
 		\emph{Appendices} folder under the name \emph{User Results.xlsx}.
+
+	\chapter{Appendix C. Database Sample Data} \label{app:dbsample}
+
+		\begin{table}[h]
+			\centering
+			\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}l c @{}} % use 'Y' for first column 
+				\toprule
+				Column Name	& Type		& Sample Value				\\
+				\midrule
+				
+				StateId		& INT		& 3							\\
+				MetricId	& INT		& 14						\\
+				Year		& INT		& 2013						\\
+				Value		& DOUBLE	& 7000						\\
+				DateAdded	& TIMESTAMP	& 2014-04-19 18:28:34.63874	\\
+				
+				\bottomrule
+			\end{tabularx}
+			\caption{\textbf{Statistics} database relation sample data}
+			\label{tbl:statstable}
+		\end{table}
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}l c @{}} % use 'Y' for first column 
+				\toprule
+				Column Name		& Type		& Sample Value				\\
+				\midrule
+				
+				Id				& INT		& 12						\\
+				Name			& VARCHAR	& Capital Gains Tax Rate	\\
+				Visible			& BOOLEAN	& TRUE						\\
+				IsCalculated	& BOOLEAN	& FALSE						\\
+				DatType			& VARCHAR	& percentage				\\
+				DisplayName		& VARCHAR	& Capital Gains Tax Rate	\\
+				URL				& VARCHAR	& KPMG/Tax Foundation		\\
+				Source			& VARCHAR	& KPMG/Tax Foundation		\\
+				DisplayOrder	& INT		& 7							\\
+				TrendType		& VARCHAR	& reversed					\\
+				
+				\bottomrule
+			\end{tabularx}
+			\caption{\textbf{Metrics} database relation sample data}
+			\label{tbl:metrictable}
+		\end{table}
+		
+		\begin{table}[h]
+			\centering
+			\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}l c @{}} % use 'Y' for first column 
+				\toprule
+				Column Name		& Type		& Sample Value	\\
+				\midrule
+				
+				Id				& INT		& 21			\\
+				Abbreviation	& VARCHAR	& MA			\\
+				Name			& VARCHAR	& Massachusetts	\\
+				IsPeerState		& BOOLEAN	& TRUE			\\
+				
+				\bottomrule
+			\end{tabularx}
+			\caption{\textbf{States} database relation sample data}
+			\label{tbl:statestable}
+		\end{table}
 
 \end{appendices}
