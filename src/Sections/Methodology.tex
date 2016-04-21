@@ -206,6 +206,9 @@
 				
 				Provided that the main purpose of the API being closed is tracking an activity 
 				for statistical purposes, \emph{API key} authentication was implemented.
+				The user has to apply for this key separately of creating a regular account.
+				The key will uniquely identify the user. If user forgets the key, 
+				he or she can recover it through the email.
 
 			\subsection{Methods}
 				
@@ -230,7 +233,9 @@
 				shows which value corresponds to which argument. Furthermore, these argument-value pairs may be in any order. 
 				Lastly, arguments that have no value can be omitted.
 				
-				The final query strings are given is Listing \ref{apicode}
+				The final query strings are given is Listing \ref{apicode}. See
+				Appendix \ref{app:apidoc} for an extensive documentation of the
+				API.
 				
 				\begin{lstlisting}[
 					frame=lines,
