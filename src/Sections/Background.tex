@@ -42,8 +42,12 @@
 		to work with data (basic create, read, update, and delete, or CRUD, 
 		operations), in this project we focused on the \emph{dashboard} 
 		subsystem. This subsystem follows MVC (Model-View-Controller) 
-		architecture. You can see its visual structure in Figure 
-		\ref{fig:sysarch}.
+		architecture to clearly separate data, business and presenting logic.
+		You can see its visual structure in Figure \ref{fig:sysarch}. 
+		Communication between \emph{View} and \emph{Controller} occurs through 
+		HTTP requests in JSON format. \emph{Controller} talks to \emph{Model} 
+		through the stored procedures. \emph{View} and \emph{Model} never 
+		communicate with each other directly.
 		
 		\begin{figure}[t]
 			\centering
@@ -61,13 +65,13 @@
 			\begin{description}[itemsep=-1.5mm, align=right,labelwidth=3cm]
 				\item [Statistics]
 					holds metrics' data in the form of a year, state, metric and 
-					value tuple (see table \ref{tbl:statstable} in appendix \ref{app:dbsample})
+					value tuple (see Table \ref{tbl:statstable} in Appendix \ref{app:dbsample})
 				\item [States]
 					holds states' metadata like name, abbreviation and if it is 
-					a peer state (see table \ref{tbl:statestable} in appendix \ref{app:dbsample})
+					a peer state (see Table \ref{tbl:statestable} in Appendix \ref{app:dbsample})
 				\item [Metrics]
 					holds metrics' metadata like description, trend and 
-					category (see table \ref{tbl:metrictable} in appendix \ref{app:dbsample})
+					category (see Table \ref{tbl:metrictable} in Appendix \ref{app:dbsample})
 			\end{description}
 			
 			The access to these tables is provided via stored procedures as a 
