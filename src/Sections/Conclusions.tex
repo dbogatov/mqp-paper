@@ -12,22 +12,35 @@
 		
 		Recommendations for other teams, either MQP or other teams, working on improving the MATTERS system in the future are as follows:
 		
-		\begin{enumerate}
-			\item
-				Refactor the client side and server side code. Since the system 
-				has been developed by a number of teams with different design 
-				patterns and approaches, there is a significant technical debt. 
-				It might be worth spending some time rewriting some parts of the system 
-				according to the latest coding and technical standards.
-			\item
-				Documentation. Right now there is a steep learning curve for the new 
-				developers who start working on the project. Good documentation may 
-				dramatically decrease the time it takes for developers to start working 
-				on the project.
-			\item
-				Role management. Right now the system supports regular users and API users. 
-				Each user metric must have one and only one author. It might be a good idea 
-				to merge these two user entities and introduce shared user metrics that are 
-				not binded to specific users.
-		\end{enumerate}
-		
+		\begin{itemize}
+			\item MATTERS system
+				\begin{enumerate}
+					\item
+						Let users define more complex equations for their user metrics.
+						User should not be limited by simple weighted average formula.
+					\item
+						Let users suggest their own data or data sources. Right now 
+						MATTERS' administrators and data management team are working on
+						adding data. By involving users in this process MATTERS may have 
+						more complete, accurate and up-to-date data.
+					\item
+						Role management. Right now the system supports regular users and API users. 
+						Each user metric must have one and only one author. It might be a good idea 
+						to merge these two user entities and introduce shared user metrics that are 
+						not binded to specific users.
+				\end{enumerate}
+			\item Software development
+				\begin{enumerate}
+					\item
+						Refactor the client side and server side code. Since the system 
+						has been developed by a number of teams with different design 
+						patterns and approaches, there is a significant technical debt. 
+						It might be worth spending some time rewriting some parts of the system 
+						according to the latest coding and technical standards.
+					\item
+						Documentation. Right now there is a steep learning curve for the new 
+						developers who start working on the project. Good documentation may 
+						dramatically decrease the time it takes for developers to start working 
+						on the project.
+				\end{enumerate}
+		\end{itemize}
