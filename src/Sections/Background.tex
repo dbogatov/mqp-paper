@@ -26,7 +26,7 @@
 	the MATTERS dashboard, a team of students working on their Major Qualifying 
 	Project (MQP) at WPI improved the administration center and the data 
 	integration for the dashboard. This involved the data integration Pipeline 
-	Manager. In addition, the Administration Center's development to allow for 
+	Manager, which allows for data to be downloaded from sources and uploaded to the database in order to populate the MATTERS Dashboard with this data. The pipelines require no coding experience to use and made it easy for MHTC members to be able to add new data sources quickly \cite{prevreport}. In addition, the Administration Center's development to allow for 
 	MHTC and other administrators who had access to be able to easily upload 
 	their desired data and metrics, as well as an intuitive way to view this 
 	data on the administrative end. This MQP team was able to integrate 20 new 
@@ -135,7 +135,7 @@
 		especially if the users could be programmatic access. For APIs whose 
 		goals are to share certain data across systems there is a great benefit 
 		efficiency wise, as many manual procedures are cut out by the APIs 
-		automatic generation. When these tasks are done manually, they waste 
+		automatic generation. Developers can create code to send requests to a system's API and receive the desired data. This system to system interaction can for example replace the need to manually parse the HTML code for the information they are looking for. By interacting from one computer to the other essentially, there is room for humans to be working on other tasks \cite{amazon}. When these tasks are done manually, they waste 
 		time and are both laborious and repetitive, as well as being more prone 
 		to error; all of these things being costly on the developer end. While 
 		it is more time consuming and costly to develop an API initially, the 
@@ -167,6 +167,8 @@
 		documentation guide allows developers to easily interact with a site's 
 		API and their own code, as many developers style their code in their own 
 		unique way. 
+		
+		In order to get the data that is stored in MATTERS, the teams of developers labor to get this data from over thirty different sites across the web. Some of these sites do not currently have an API, which makes the process of getting the desired data much more difficult. For these sites it takes extra effort just to get the data into the MATTERS site. As a result of this issue seen when trying to interact with other data driven sites, we do not want our site to give developers the same issues. An API will give other developers an easier means of accessing the data stored by MATTERS rather than only seeing the data from the front end of the site.
 
 	\subsection{Metric Builder}
 

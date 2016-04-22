@@ -125,14 +125,29 @@
 			experience using the MATTERS Data Explorer, we used the sidebar from the Data Explorer as the 
 			basis for how the users would select their metrics on the Metric Builder page as well. Since the Metric Builder does not need a user to select states, 
 			that part of the sidebar was removed. We also removed rankings from the metric selection column of the sidebar since rankings are manipulations of 
-			various other metrics already found in the database. 
+			various other metrics already found in the database. The Metric Builder can be seen in Figure \ref{fig:mb2}
+			
+				\begin{figure}[t]
+					\centering
+					\fbox{\includegraphics[width=0.75\textwidth]{images/mb2.png}}
+					\caption{Metric Builder in use}
+					\label{fig:mb2}
+				\end{figure}
 			
 			Once a user selects the metrics they wish to use in order to create their own metric formula, they have the ability to assign each of them different weights 
 			to decide how much of a factor each of the metric's data will be in the formula. To adjust the weight of a metric, users can use the sliders that appear under 
 			each metric that they have selected. The sliders work horizontally from left to right and allow a weight from zero (which would be the same as not including the metric) 
 			to one hundred. Users can click on a section of the slider to move to that weight, click and drag to a specific weight or use the arrow keys to move the slider's value up or down. 
-			The idea for the sliders came from a New York Times site which allows users to interactively calculate their rent and other values using visual sliders \cite{slider}. The sliders are 
+			The idea for the sliders came from a New York Times site which allows users to interactively calculate their rent and other values using visual sliders, as seen in Figure \ref{fig:slider} \cite{slider}. The sliders are 
 			visually appealing and simple to use and understand.
+			
+			\begin{figure}[t]
+				\centering
+				\fbox{\includegraphics[width=0.75\textwidth]{images/slider.png}}
+				\caption{Example of New York Times' slider showing Home Price}
+				\label{fig:slider}
+			\end{figure}
+			
 			
 			The Metric Builder displays options to name the user's custom metric, save their metric and also go back and edit or delete the metric they have created. There is a 
 			simple to use button that says "Remove" next to each metric chosen, making it easy for users to change the metrics included in their formula. The input 
@@ -143,7 +158,7 @@
 			the formula will update and show the basics of the math that needs to be done on the back end. This includes showing the users that they are 
 			multiplying each data point by the chosen weight before adding each metric's data values together, and that sum is being divided by the total weight as a weighted average approach. 
 			This is shown in a simple way to make sure that users can follow along and are aware of exactly what they changing when they adjust their formulas. 
-			Once content, each time a user saves and updates their formula they will be prompted and subsequently directed to the Data Explorer page where they can begin using their custom metrics and displaying the data with the various visualization options.
+			Once content, each time a user saves and updates their formula they will be prompted and subsequently directed to the Data Explorer page where they can begin using their custom metrics and displaying the data with the various visualization options. The Data Explorer page also has a link back to the Metric Builder in the sidebar so that users can easily go back and forth between visualizing metrics and creating or editing custom metrics at any time. All of the features of the Metric Builder went through testing and the final design can be seen in Section 4.3.
 			
 
 	\section{API}
