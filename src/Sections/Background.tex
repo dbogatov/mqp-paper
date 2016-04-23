@@ -32,7 +32,7 @@
 	data on the administrative end. This MQP team was able to integrate 20 new 
 	data sources for the MATTERS dashboard, make the Administration Center 
 	usable for non-technical users, and improve upon the look-and-feel of the 
-	MATTERS dashboard as a whole \cite{iqp}.
+	MATTERS dashboard as a whole \cite{iqp}. Development has continued throughout the past two years from 2014 until now, in the past supported by various MHTC project partners such as: MITRE software engineering architects and Mesh Corporation, a web design firm and consultant for the development of visual state profile pages. 
 
 	\section{System Architecture}
 	
@@ -42,7 +42,7 @@
 		to work with data (basic create, read, update, and delete, or CRUD, 
 		operations), in this project we focused on the \emph{dashboard} 
 		subsystem. This subsystem follows MVC (Model-View-Controller) 
-		architecture to clearly separate data, business and presenting logic.
+		architecture to clearly separate data, business and presenting logic \cite{mvc}.
 		You can see its visual structure in Figure \ref{fig:sysarch}. 
 		Communication between \emph{View} and \emph{Controller} occurs through 
 		HTTP requests in JSON format. \emph{Controller} talks to \emph{Model} 
@@ -79,8 +79,8 @@
 			
 		\subsection{Controller}
 		
-			The business logic of the system resides on a Java-based server. 
-			Spring framework is used as a server architecture solution. A front 
+			The business logic of the system resides on a Java-based server \cite{java}. 
+			Spring framework is used as a server architecture solution \cite{spring}. A front 
 			end request that comes to the system goes through controllers which, 
 			in turn, invoke services. Services query the data layer and return 
 			data stored	in models. These data models get pushed back to the 
@@ -93,12 +93,12 @@
 			calls, then use the returned data to generate the content. The 
 			website has a significant amount of logic on the client side as it 
 			needs to build tables, plots and charts. The two main JavaScript 
-			libraries used on the client side are jQuery and D3. jQuery makes it 
+			libraries used on the client side are jQuery \cite{jquery} and D3 \cite{d3}. jQuery makes it 
 			easy to manipulate DOM while D3 is used for generating vector based 
 			plots and charts.
 			
 			Visual representation and displays are based on the responsive 
-			Twitter Bootstrap 3 framework, which is a collection of CSS classes 
+			Twitter Bootstrap 3 framework \cite{bootstrap}, which is a collection of CSS classes 
 			and small JavaScript snippets. 
 
 	\section{Requirements}
@@ -106,7 +106,7 @@
 		Before we could embark on creating an API for MATTERS as well as 
 		designing the Metric Builder page for the site, we had to conduct 
 		research. This included to look into other similar features of different 
-		sites and make decisions regarding implementation, design and security 
+		sites, such as the New York Times sliders \cite{slider}, and make decisions regarding implementation, design and security 
 		features for these aspects of the MATTERS site.
 
 	\subsection{API and Documentation}
@@ -195,7 +195,7 @@
 		Certain data types could end up dominating in a user-created indicator 
 		when combined with significantly smaller value data types. There are 
 		also complexities involved with certain data types that are represented 
-		in the reverse of the majority of the data types. For example, both 
+		in the differently than the majority of the data types. For example, both 
 		rankings and some other data types use numerical values in which a lower 
 		value indicates a better performance by the state, versus for the 
 		majority of other metrics the larger the value is the better a state is 
