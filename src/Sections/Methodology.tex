@@ -15,8 +15,7 @@
 							Pros
 							\begin{itemize}
 								\item
-									Fast to retrieve; no computation needed 
-									no computation needed
+									Fast to retrieve; no computation needed
 							\end{itemize}
 						\item
 							Cons
@@ -25,7 +24,7 @@
 									Waste of space in the database
 								\item
 									User metric data remains static;
-									update in the underlying data does not cause an update in the user metric
+									update in the underlying data does not cause an update in the user metric unless additional derivation logic for syncing updates is developed 
 							\end{itemize}
 					\end{itemize}
 				\item
@@ -48,17 +47,18 @@
 					\end{itemize}
 			\end{enumerate}
 
-			Looking at the cons of each option, we attempted to approximate how bad they are.
+			Looking at the cons of each option, we evaluated how bad they are.
 			Having $n$ users each creating $m$ user metrics each of which has data for $k$ years
 			we have $m \cdot n \cdot k \cdot 50$ entries in the database.
-			This data would be a snapshot. If any data point in the metrics changes, user metrics remain out of sync.
+			This data would be a snapshot, but it does not appear to be that huge. However, if any data point in the metrics changes, user metrics would remain out of sync. 
+			The latter is a more severe problem.
 
-			For the second option, it was difficult to approximate time it takes to compute a user metric 
+			For the second option, it was difficult to estimate the time it would take to compute a user metric 
 			as it depends on the server load and the number of metrics involved in the user metric. 
-			We implemented the second option and benchmarked it with $3$ users trying to compute 
-			largest possible user metric (all metrics with all states selected). 
-			It took around $1.5$ seconds to load all $3$ user metrics. 
-			This drove our design decision towards the second option - computing metrics on-the-fly.
+			For this reason we decided to prototype the second option to be able to benchmark it with $3$ users by focusing on the
+			largest possible user metric (namely, one that involves all metrics with all states selected). 
+			It took around $1.5$ seconds to load all $3$ user metrics.  Given that we do not expect many metrics, we opted to go with this. 
+			This drove our design decision towards the second design decision - computing metrics on-the-fly.
 			
 			\subsubsection{Note on normalization and missing values}
 			
@@ -100,10 +100,10 @@
 		
 			The main goals for the front end of the Metric Builder feature was to design a webpage 
 			that was easy to use, easily accessible, intuitive, and consistent 
-			with the design of other pages on the MATTERS site. 
+			with the look and feel of the other pages on the MATTERS site. 
 			The Metric Builder feature needed to be a tool that allowed users with any level of 
 			technological background to easily build their metric formula from preexisting metrics, 
-			assign weights to their chosen metrics, and be able to make changes to their metric formula at any time.
+			assign weights to their chosen metrics, examine the impact of their decisions easily in visual displays, and be able to make changes and/or to correct their metric formula at any time.
 			
 			The front end for the Metric Builder page was created through the use of HTML, CSS and JavaScript. 
 			To make the page consistent with the rest of the site, code was reused from the Data Explorer page. 
@@ -125,25 +125,42 @@
 			experience using the MATTERS Data Explorer, we used the sidebar from the Data Explorer as the 
 			basis for how the users would select their metrics on the Metric Builder page as well. Since the Metric Builder does not need a user to select states, 
 			that part of the sidebar was removed. We also removed rankings from the metric selection column of the sidebar since rankings are manipulations of 
-			various other metrics already found in the database. 
+			various other metrics already found in the database. The Metric Builder can be seen in Figure \ref{fig:mb2}
+			
+				\begin{figure}[t]
+					\centering
+					\fbox{\includegraphics[width=0.75\textwidth]{images/mb2.png}}
+					\caption{Metric Builder in use}
+					\label{fig:mb2}
+				\end{figure}
 			
 			Once a user selects the metrics they wish to use in order to create their own metric formula, they have the ability to assign each of them different weights 
 			to decide how much of a factor each of the metric's data will be in the formula. To adjust the weight of a metric, users can use the sliders that appear under 
 			each metric that they have selected. The sliders work horizontally from left to right and allow a weight from zero (which would be the same as not including the metric) 
-			to one hundred. Users can click on a section of the slider to move to that weight, click and drag to a specific weight or use the arrow keys to move the slider's value up or down. 
-			The idea for the sliders came from a New York Times site which allows users to interactively calculate their rent and other values using visual sliders \cite{slider}. The sliders are 
+			to one hundred. We chose these values for the weight range to make it easy for users weigh the importance of each metric chosen, and be able to understand how their weights were affecting the metric formula. 
+			Users can click on a section of the slider to move to that weight, click and drag to a specific weight or use the arrow keys to move the slider's value up or down. 
+			The idea for the sliders came from a New York Times site which allows users to interactively calculate their rent and other values using visual sliders, as seen in Figure \ref{fig:slider} \cite{slider}. The sliders are 
 			visually appealing and simple to use and understand.
 			
-			The Metric Builder displays options to name the user's custom metric, save their metric and also go back and edit or delete the metric they have created. There is a 
-			simple to use button that says "Remove" next to each metric chosen, making it easy for users to change the metrics included in their formula. The input 
+			\begin{figure}[t]
+				\centering
+				\fbox{\includegraphics[width=0.75\textwidth]{images/slider.png}}
+				\caption{Example of New York Times' slider showing Home Price}
+				\label{fig:slider}
+			\end{figure}
+			
+			
+			The Metric Builder display offers options for the user to name her new custom metric, save her metric and also go back and edit or delete the metric she had previously created. There is a 
+			simple to use button that says "Remove" next to each chosen metric, making it easy for users to change the metrics included in their formula. The input 
 			box to name the custom metric and save the changes can be found below all of the chosen metrics and sliders. This was done to help users and encourage them to 
-			properly weigh all the selected metrics before leaving saving their custom metric formula to use, as users typically look at a webpage from top to bottom.
+			properly weigh all the selected metrics before leaving and then saving their custom metric formula, as users typically look at a webpage from top to bottom.
 		
-			Finally, above all of the metrics selected is a box displaying the basics of their created metric formula. As the users update metric selections and their various weights,
-			the formula will update and show the basics of the math that needs to be done on the back end. This includes showing the users that they are 
+			Finally, above all of the metrics that were selected there is a box displaying the resulting formula being composed by the selected sliders. As the users update metric selections and their various weights,
+			the formula will be continuously updated. It shows the basics of the computation that is to be performed on the back end. This includes showing the users that they are 
 			multiplying each data point by the chosen weight before adding each metric's data values together, and that sum is being divided by the total weight as a weighted average approach. 
-			This is shown in a simple way to make sure that users can follow along and are aware of exactly what they changing when they adjust their formulas. 
-			Once content, each time a user saves and updates their formula they will be prompted and subsequently directed to the Data Explorer page where they can begin using their custom metrics and displaying the data with the various visualization options.
+			As a result of the users weighing each metric, as described previously in Section 3.1.1, the data also goes through a Z-normalization on the back end. This part is not shown in the box so as not to confuse the users, but the basics of the computation being done is still shown to give them an idea. 
+			This is shown in a relatively simple fashion to make sure that users can follow along and are aware of exactly what they are changing when they adjust their formulas. 
+			Once content, each time a user saves and updates their formula they will be prompted and subsequently directed to the Data Explorer page where they can begin using their custom metrics and displaying the data with the various visualization options. The Data Explorer page also has a link back to the Metric Builder in the sidebar so that users can easily go back and forth between visualizing metrics and creating or editing custom metrics at any time. All of the features of the Metric Builder went through testing and the final design can be seen in Section 4.3.
 			
 
 	\section{API}
@@ -151,8 +168,8 @@
 			Implementing an API, there are several design decisions to consider, including:
 			\begin{itemize}
 				\item
-					Do we implement a closed API or open API? 
-					If closed, how do we implement authentication.
+					Do we implement a closed API, which are in a controlled environment and serve a very limited audience, or an open API, which are available to use by anyone who registers for a key \cite{openapi}? 
+					If closed, how do we implement authentication. 
 				\item
 					Which methods do we support via this API?
 				\item
@@ -179,21 +196,21 @@
 						\emph{Handshake} mechanism with random value
 				\end{itemize}
 				
-				Binding to API user t regular user would allow any registered user to access API. 
-				Although this kind of authentication is the easiest one to implement we wanted a separate API users.
+				Binding the API to a regular user would allow any registered user to access the API. 
+				Although this kind of authentication is the easiest one to implement, we instead opted for a separate API for users.
 				
-				Simple  \emph{API key} authentication is the one when API users are given unique token 
+				Simple  \emph{API key} authentication is equivalent to when API users are given a unique token 
 				(long random string) which they need to provide with each request. 
-				Based on this token system is able to accept or deny connection and track individual users.
+				Based on this token, the system is able to accept or deny the connection and to track the individual users.
 				
-				\emph{Handshake} mechanism with random value involves the following steps
+				Next, the \emph{handshake} mechanism with a random value involves the following steps:
 				
 				% source http://web.cs.wpi.edu/~cs4513/c16/projects/proj2/index.html
 				\begin{itemize}
 					\item
-						Client sends in username (not password)
+						Client sends in a username (not password)
 					\item
-						Server responds by sending back unique random number
+						Server responds by sending back a unique random number
 					\item
 						Client encrypts using user's password plus number as key
 					\item
@@ -204,24 +221,24 @@
 						Server compares two hashed or encrypted values, if same then grant access
 				\end{itemize}
 				
-				Provided that the main purpose of the API being closed is tracking an activity 
-				for statistical purposes, \emph{API key} authentication was implemented.
+				Given that the main purpose of the API being closed is to track user activities
+				for statistical purposes, \emph{API key} authentication was deemed sufficiently secure and thus was chosen for implementation.
 				The user has to apply for this key separately of creating a regular account.
 				The key will uniquely identify the user. If user forgets the key, 
 				he or she can recover it through the email.
 
-			\subsection{Methods}
+			\subsection{Methods of the API}
 				
-				Main method implemented in the API is \code{api/data?}. 
-				This method returns all data points for given metrics, states and years.
+				The main method implemented in the API is "\code{api/data?}". 
+				This method returns all data points for the requested metrics, states and years.
 				
 				Since \code{api/data?} needs specific IDs as arguments, there is a need for supporting 
 				methods which show information about metrics and states. 
-				So we also implemented \code{api/metrics?} and \code{api/states?}.
+				So we also implemented \code{api/metrics?} and \code{api/states?} as two additional commands. Each method is explained in Section 3.2.4.
 
 			\subsection{Query string and output format}
 			
-				The are two options for constructing a query string, namely:
+				There are two common options for constructing a query string \cite{qualtrics}, namely:
 				\begin{itemize}
 					\item
 						\code{api/method?argument1=value1\&argument2=value2\&...}
@@ -229,17 +246,17 @@
 						\code{api/method/value1/value2/...}
 				\end{itemize}
 				
-				To make out API user-friendly, we chose to implement the first option since it clearly 
+				To make our API user-friendly, we chose to implement the first option since it clearly 
 				shows which value corresponds to which argument. Furthermore, these argument-value pairs may be in any order. 
-				Lastly, arguments that have no value can be omitted.
+				Lastly, arguments that have no value can be omitted. If omitted, you will get only the data specifically requested.
 				
-				The final query strings are given is Listing \ref{apicode}. See
+				The final query strings are given in Listing \ref{apicode}. See
 				Appendix \ref{app:apidoc} for an extensive documentation of the
 				API.
 				
 				\begin{lstlisting}[
 					frame=lines,
-					caption={API methods examples}, 
+					caption={API Methods Examples}, 
 					label=apicode, 
 					basicstyle=\footnotesize\ttfamily,
 					backgroundcolor=\color{codegray}, 
@@ -247,7 +264,7 @@
 					emphstyle=\underbar
 				]
 /* method */
-/api/data?metric=&state=&year=&apiKey=
+/api/data?metric=<value>&state=<value>&year=<value>&apiKey=<value>
 /* example */
 /api/data?metric={16,32}&state=MA&year=*&apiKey=key
 
@@ -263,7 +280,7 @@
 				\end{lstlisting}
 				
 				The output format JSON (JavaScript Object Notation) was chosen
-				as it both comapact and human and computer readable. See Listing 
+				as it both compact and human- and computer-readable. See Listing 
 				\ref{ls:apioutput} in Appendix \ref{app:dbsampl} for the example 
 				of API method output. 
 				
@@ -271,17 +288,16 @@
 				
 				In order for the developers to know how to make proper API calls, 
 				it was necessary to create the API Documentation page for MATTERS. 
-				The documentation providers users with full information on the MATTERS API 
-				and how to use it, as well as examples of valid API calls and the output 
-				that they would return. It is important to ensure that the API Documentation 
-				is free of both natural language and code sample errors, as this tool is 
+				The documentation provides users with information on the MATTERS API, including how to use it as well as examples of valid API calls and the output 
+				that each call would return. It is important to ensure that the API Documentation 
+				is easy to read and free of code sample errors, as this tool is 
 				what developers unfamiliar with using the API rely on to understand how 
 				to properly access and extract data \cite{errors}. 
 				
 				In order to make the documentation easy to follow, the documentation was divided into sections. 
 				The main sections of the API Documentation were: an overview, the methods, 
 				the parameters, and examples. The layout of the MATTERS API Documentation was based on the 
-				API Documentation of Tradestation, which had was very simple and easy to follow \cite{apiex}. 
+				API Documentation of Tradestation, which was simple and easy to follow \cite{apiex}. 
 				The Tradestation documentation provided a summary, path, parameters, and examples of both an 
 				API call and what it would return. An example of their documentation can be found at: 
 				http://tradestation.github.io/webapi-docs/en/users/accounts/ \cite{apiex}. For the MATTERS API, 
@@ -303,7 +319,7 @@
 			\subsubsection{API Key Subsection}
 				
 				Developers without authorization do not have the ability to use the MATTERS API 
-				until they have been given an API key. These users are directed to the “Contact Us” 
+				until they have been given an API key. These users are directed to the "Contact Us" 
 				page of the MATTERS site in order to send an email request to become an authorized user with their own key. 
 				This section also explains that the API key is used in all 
 				API calls in order to validate the user's request.

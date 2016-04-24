@@ -18,17 +18,17 @@
 		are more experienced with the MATTERS site or with developing APIs. After completing the tasks 
 		for each part of the user study, the users filled out a survey asking them to rate the 
 		easiness of different aspects of the tasks on a scale of one to five. While the users were 
-		completing their tasks, our team was also there observing their actions in order to get better 
-		insight on their clicking behavior and thought process while navigating the site. 
-		We also recorded the operating system and browser the users were doing the study on to 
+		completing their tasks, our team was also there observing their actions in order to gain a better 
+		insight into their clicking behavior and thought process while navigating the site. 
+		We also recorded the operating system and browser the users were utilizing in this study to 
 		note any important differences this may bring about.
 
 		\subsection{User Tasks} 
 		
-			The user tasks given to the users in the following order and were printed on a 
+			The user tasks were given to the users in the following order. The y were printed on a 
 			sheet of paper so that the users could reference the task details at any time:
 			
-			User Study Tasks: Part 1, Metric Builder feature
+			\textbf{User Study Tasks: Part 1, Metric Builder feature}
 			\textit{
 				\begin{enumerate}[itemsep=-1.5mm]
 					\item
@@ -54,7 +54,7 @@
 				\end{enumerate}
 			}
 			
-			User Study Tasks: Part 2, API feature and Documentation
+			\textbf{User Study Tasks: Part 2, API feature and Documentation}
 			
 			\textit{
 				\begin{enumerate}[itemsep=-1.5mm]
@@ -77,11 +77,14 @@
 	\section{Results}
 
 		Thirteen users completed the user study and filled out the subsequent surveys. 
-		Most users performed the tasks on Google Chrome or Safari and all users performed 
+		Most users performed the tasks on Google Chrome or Safari. All users performed 
 		the tasks on either a Mac Operating System or Windows Operating System. 
 		All of the data collected from the user studies can be found in Appendix 2. 
+		
 		Table \ref{metrictest} shows the average of the users' ratings on a scale of 
 		one to five for each question on the survey regarding the Metric Builder feature.
+		Users rated all the tasks high (above our standard of at least an average score of 3). This proved that along with our observations
+		and initial design planning, that the Metric Builder feature was made to be intuitive for both technical and non-technical users alike.
 		
 			\begin{table}[t]
 				\centering
@@ -130,32 +133,32 @@
 		“How easy was it to edit 'My Metric' to make the appropriate changes?” 
 		and “How easy was it to find the API Documentation?”. User feedback on the 
 		open ended survey responses, as well as observations made by our team during 
-		the user studies were able to confirm that these two tasks were the most 
-		difficult or confusing and provided insight as to how to improve it.
+		the user studies confirmed that these two tasks were the most 
+		difficult or confusing. This feedback also provided insight as to how to improve it.
 		
 		For the Metric Builder, users noted that they wanted an option to 
 		allow them to edit their metric from the Data Explorer page. 
 		Our observations confirmed that while on the Data Explorer page, 
 		users were actively searching for an edit button while they were 
 		viewing their custom made metric. Many times the users would find the 
-		"Create new metric” link quickly, which if clicked would bring the 
-		user to the Metric Builder page where they could also edit their metric, 
-		but were hesitant to click the link because they were not 
-		interested in starting over with a new metric.
+		"Create new metric" link quickly. However, this link, once clicked would bring the 
+		user to the Metric Builder page where they could also edit their metric. 
+		However, they were hesitant to click the link because they were not 
+		interested in starting over with a new metric. The resulting changes can be found in Section 4.3.
 		
-		For the API Documentation, many users commented on their difficulty finding 
+		For the API Documentation, many users commented on their difficulty in finding 
 		the link for the API Documentation page. Ultimately, twelve out of the thirteen 
 		users did not have much of an issue eventually navigating to the API Documentation 
-		link found on the “How to use MATTERS” page as seen in Figure \ref{fig:how}; however, it was more 
-		time consuming than it should have been and many users clicked on multiple other 
+		link found on the "How to use MATTERS" page as seen in Figure \ref{fig:how}. However, it was more 
+		time consuming than it should have been and clearly this info is hidden in a lot of text. Many users clicked on multiple other 
 		links before navigating to the correct page. The users who stated that they did not 
 		know what an API was mainly looked for the API Documentation link in the main drop-down 
-		menu of the site before navigating to the ”About” page, followed by clicking on the 
-		link to “How to use MATTERS” and finally finding the API section which led them to 
-		the documentation. Most of the users who were aware of what an API was, ultimately 
-		navigated to the API Documentation page the same way; however, many of them scrolled 
-		to the bottom of the home page of the site looking for a link similar to the “Developers” 
-		links found at the bottom of many webpages.
+		menu of the site before navigating to the "About" page, followed by clicking on the 
+		link to "How to use MATTERS" and finally finding the API section which led them to 
+		the documentation. This corresponds to three levels of navigation, which is a hindrance. Most of the users who were aware of what an API was, ultimately 
+		navigated to the API Documentation page the same way. However, many of them scrolled 
+		to the bottom of the home page of the site first looking for a link similar to the "Developers" 
+		links found at the bottom of many webpages. The resulting change in location of the API Documentation link can be seen in Section 4.3.
 		
 			\begin{figure}[t]
 				\centering
@@ -164,13 +167,13 @@
 				\label{fig:how}
 			\end{figure}
 		
-	\section{Changes made}
+	\section{Changes Made}
 
-		As a result of the user ratings, comments and our observations made while completing 
+		As a result of the user evaluation study, comments and our observations made while completing 
 		the user study tasks, we made a few front end changes to make our features easier 
 		to use and easier to find. This included adding a link to the API Documentation in 
-		the footer of the site in addition to the link on the "How to use MATTERS" page, as seen 
-		in Figure \ref{fig:footer}, and as shown in Figure \ref{fig:edit}, changing the “Create new metric” link on the 
+		the footer of the site in addition to the link on the "How to use MATTERS" page. This can be seen 
+		in Figure \ref{fig:footer}.  Also, shown in Figure \ref{fig:edit}, we changed the "Create new metric" link on the 
 		Data Explorer page to mention that the link would also allow users to edit their metric. 
 		
 			\begin{figure}[t]
@@ -188,36 +191,38 @@
 			\end{figure}
 			
 		These changes led to the final design of the front end of the Metric Builder 
-		and API Documentation which can be seen in the figures below. Figures \ref{fig:mb} and \ref{fig:inuse} show the Metric Builder page when a user first visits 
+		and API Documentation. The final design can be seen in the figures below. Namely, Figures \ref{fig:mb} and \ref{fig:inuse} show the Metric Builder page when a user first visits 
 		the page and after a user has selected and assigned weights to some of the metrics from the Metric Selection column of the sidebar. Once the user has decided to save their metric formula, 
-		if they choose to go back and edit any part of it, the "Save" button will be replaced by an "Update" button and options are added to "Cancel" any changes or remove the custom metric completely. 
-		These additional options can all be seen in Figure \ref{fig:save}. Finally, there were no changes that needed to made to the API Documentation itself as a result of the user testing. 
-		Figure \ref{fig:docs}, shows the API Documentation page as it appears when a user first navigate to the page from either the footer or the "How To Use MATTERS" page.
+		if they choose to go back and edit any part of it, the "Save" button will be replaced by an "Update" button. Options are added to "Cancel" any changes or remove the custom metric completely. 
+		These additional options can all be seen in Figure \ref{fig:save}. 
+		
+		Finally, there were no changes that needed to made to the API Documentation itself as a result of the user testing. 
+		Figure \ref{fig:docs} shows the API Documentation page as it appears when a user first navigates to the page from either the footer or the "How To Use MATTERS" page.
 
 			\begin{figure}[t]
 				\centering
 					\fbox{\includegraphics[width=0.75\textwidth]{images/mb.png}}
-					\caption{Metric Builder}
+					\caption{Metric Builder Welcome Page}
 					\label{fig:mb}
 			\end{figure}
 			
 			\begin{figure}[t]
 				\centering
 					\fbox{\includegraphics[width=0.75\textwidth]{images/using.png}}
-					\caption{Metric Builder's canvas}
+					\caption{Metric Builder's Canvas}
 					\label{fig:inuse}
 			\end{figure}
 			
 			\begin{figure}[t]
 				\centering
 					\fbox{\includegraphics[width=0.75\textwidth]{images/saved.png}}
-					\caption{"Save" menu}
+					\caption{"Save" Menu}
 					\label{fig:save}
 			\end{figure}
 			
 			\begin{figure}[t]
 				\centering
 					\fbox{\includegraphics[width=0.75\textwidth]{images/api.png}}
-					\caption{API Documentation page}
+					\caption{API Documentation Page}
 					\label{fig:docs}
 			\end{figure}

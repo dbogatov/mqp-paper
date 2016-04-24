@@ -8,6 +8,10 @@ James Manyika, Michael Chui, Brad Brown, Jacques Bughin, Richard Dobbs, Charles
 \newblock
   \url{http://www.mckinsey.com/business-functions/business-technology/our-insights/big-data-the-next-frontier-for-innovation}.
 
+\bibitem{bdex}
+Examples of big data projects.
+\newblock \url{https://www.acquia.com/examples-big-data-projects}, 2016.
+
 \bibitem{mhtc}
 About mhtc.
 \newblock \url{http://www.mhtc.org/about-mhtc/}, 2014.
@@ -15,6 +19,23 @@ About mhtc.
 \bibitem{about}
 About matters.
 \newblock \url{http://matters.mhtc.org/about}, 2015.
+
+\bibitem{wpi}
+Current team/ contributors.
+\newblock \url{http://davis.wpi.edu/dsrg/PROJECTS/MATTERS/Members.html}, 2016.
+
+\bibitem{metrics}
+Metrics.
+\newblock \url{http://www.investopedia.com/terms/m/metrics.asp}, 2016.
+
+\bibitem{indicator}
+Indicator.
+\newblock \url{http://www.investopedia.com/terms/i/indicator.asp}, 2016.
+
+\bibitem{apidef}
+Brian Proffitt.
+\newblock What apis are and why they're important.
+\newblock \url{http://readwrite.com/2013/09/19/api-defined/}, September 2015.
 
 \bibitem{prevreport}
 Alex Fortier, Long Hoang~Nguyen Duc, Kevin Mee, and Westley Russell.
@@ -31,12 +52,50 @@ Nilesh Patel, Stefan Gvozdenovic, and Ted Meyer.
   \url{http://www.wpi.edu/Pubs/E-project/Available/E-project-050814-222635/unrestricted/Final_report_5.6.2014_FINAL-revisions.pdf},
   May 2014.
 
+\bibitem{mvc}
+Mvc architecture.
+\newblock \url{https://developer.chrome.com/apps/app_frameworks}, 2016.
+
+\bibitem{java}
+Java software.
+\newblock \url{https://www.oracle.com/java/index.html}, 2016.
+
+\bibitem{spring}
+Spring framework.
+\newblock \url{https://projects.spring.io/spring-framework/}, 2016.
+
+\bibitem{jquery}
+jquery.
+\newblock \url{https://jquery.com/}, 2016.
+
+\bibitem{d3}
+Data driven documents.
+\newblock \url{https://d3js.org/}, 2016.
+
+\bibitem{bootstrap}
+Bootstrap.
+\newblock \url{http://getbootstrap.com/}, 2016.
+
+\bibitem{slider}
+Mike Bostock, Shan Carter, and Archie Tse.
+\newblock Is it better to rent or buy.
+\newblock
+  \url{http://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html?_r=0},
+  2016.
+
 \bibitem{govapi}
 Greg Sleter.
 \newblock What's an api and why do you need one?
 \newblock
   \url{http://www.govtech.com/applications/Whats-an-API-and-Why-Do-You-Need-One.html},
   May 2014.
+
+\bibitem{amazon}
+Erick Schonfeld.
+\newblock Amazon takes the humans out of fulfillment with new api.
+\newblock
+  \url{http://techcrunch.com/2008/03/20/amazon-takes-the-humans-out-of-fulfillment-with-a-new-api/},
+  March 2008.
 
 \bibitem{readwrite}
 Brian Proffitt.
@@ -75,11 +134,15 @@ The top 10 economic indicators: What to watch and why.
   \url{http://www.aaii.com/investing-basics/article/the-top-10-economic-indicators-what-to-watch-and-why},
   2016.
 
-\bibitem{slider}
-Mike Bostock, Shan Carter, and Archie Tse.
-\newblock Is it better to rent or buy.
+\bibitem{openapi}
+Open vs. closed apis.
+\newblock \url{http://apievangelist.com/2011/06/01/open-vs-closed-apis/}, June
+  2011.
+
+\bibitem{qualtrics}
+Passing information via query strings.
 \newblock
-  \url{http://www.nytimes.com/interactive/2014/upshot/buy-rent-calculator.html?_r=0},
+  \url{https://www.qualtrics.com/support/survey-platform/developer-tools/api-integration/passing-information-through-query-strings/},
   2016.
 
 \bibitem{errors}
