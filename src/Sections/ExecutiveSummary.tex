@@ -1,6 +1,6 @@
 \chapter*{Executive Summary}
 	
- Data is a large part of every industry in the business world and big data can help create value in these industries by providing various analytics and performance measures that were once not readily available. Gathering and analyzing this data can drive growth and lead to better decision making across industries. The Massachusetts High Technology Council (MHTC) actively works to maintain Massachusetts' reputation as a competitive business environment in technology based sectors. With this in mind, MHTC worked to create MATTERS, the Massachusetts Technology, Talent, and Economic Reporting System, which is a web dashboard designed that allows users to access and visualize data collected from a large number of other sites together. MATTERS allows users to compare economic, educational, demographic and other aspects across states.
+ Data is a large part of every industry in the business world and big data can help create value in these industries by providing various analytics and performance measures that were once not readily available. Gathering and analyzing this data can drive growth and lead to better decision making across industries. The Massachusetts High Technology Council (MHTC) actively works to maintain Massachusetts' reputation as a competitive business environment in technology based sectors. With this in mind, MHTC worked to create MATTERS, the Massachusetts Technology, Talent, and Economic Reporting System, which is a web dashboard designed that allows users to access and visualize data collected from a large number of other sites. MATTERS allows users to compare economic, educational, demographic and other aspects across states.
  
  The goal of our project was to introduce two new features to MATTERS that would allow for users to interact with the collected data in more ways than previously available. The ability to display and analyze data in new ways would help to continue MHTC's goal of showing Massachusetts as a competitive state for businesses that are high tech. To achieve this goal we completed the following:
  \begin{itemize}
@@ -11,13 +11,13 @@
  	\item Test the features to ensure that they are easy to use for both technical and non-technical users
  \end{itemize} 
  
- Before the creation of the Metric Builder page, users could compare states and years by looking at the preexisting metrics found in the MATTERS database. This limited the way users could innteract with the data. MHTC wanted a way to store their own custom metrics which led to the creation of the Metric Builder page. Using the Metric Builder, users now have the ability to choose any number of metrics and assign different weights to indicate how important each metric was compared to the others selected. The Metric Builder feature would build the custom metric formula for the users and normalize the data values, allowing users to visualize their custom metrics just as they would any metric in the site already.As a result of the creation of the Metric Builder, MHTC used our metric formula tool to create four custom metrics that will be displayed on the home page of the MATTERS site.
+ Before the creation of the Metric Builder page, users could compare states and years by looking at the preexisting metrics found in the MATTERS database. This limited the way users could innteract with the data. MHTC wanted a way to store their own custom metrics which led to the creation of the Metric Builder page. Using the Metric Builder, users now have the ability to choose any number of metrics and assign different weights to indicate how important each metric was compared to the others selected. The Metric Builder feature would build the custom metric formula for the users and normalize the data values, allowing users to visualize their custom metrics consistently just as they would any metric in the site already. As a result of the creation of the Metric Builder, MHTC used our metric formula tool to create four custom metrics that will be displayed on the home page of the MATTERS site.
  
- Meanwhile, the creation of the API helped to provide developers with a means of extracting desired data values in a system friendly way. Previous to implementing a public facing API, the only way to access the raw data would be through parsing the HTML. Having an API for the site, makes the data more widely available to the public. During this implementation two things needed to be considered; a way to have users access all of the data securely and how developers would know how to send proper API requests. To make sure the data was accessed securely, a common practice which we adopted was the creation of an API key. Users will receive a specific API key identifier and this will give them access to the data while also allowing us to keep track of who is accessing the data values at any time. To make the API easy to use, API documentation was created following standard practices of API documentation for sites.
+ Meanwhile, the creation of the API helped to provide developers with a means of extracting desired data values in a system friendly way. Previous to implementing a public facing API, the only way to access the raw data would be through parsing the HTML. Having an API for the site makes the data more widely available to the public and helps developers save time and reduce errors by not having to scrap MATTERS for data. During this implementation two things needed to be considered; a way to have users access all of the data securely and how developers would know how to send proper API requests. To make sure the data was accessed securely, a common practice which we adopted was the creation of an API key. Users will receive a specific API key identifier and this will give them access to the data while also allowing us to keep track of who is accessing the data values at any time. To make the API easy to use, API documentation was created following standard practices of API documentation for sites.
  
- With these new features now in place, users will be able to interact with the available data in even more ways than previously available from both the user side and the system side. This will continue to make MATTERS a usefu tool for both MHTC and other users, and continue to aid MHTC's goal to make Massachusetts a competitive environment for high-tech business.
+ With these new features now in place, users will be able to interact with the available data in even more ways than previously available from both the user side and the system side. This will continue to make MATTERS a useful tool for both MHTC and other users, and continue to aid MHTC's goal to make Massachusetts a competitive environment for high-tech businesses.
  
- Upon completion of this project we developed a set of recommendations for those who will continue to work on MATTERS in the future. The recommendations are as follows:
+ Upon completion of this project, we have developed a set of recommendations for those who will continue to work on MATTERS in the future. The recommendations are as follows:
  
  	\begin{itemize}
  		\item MATTERS system
@@ -26,15 +26,15 @@
  			Let users define more complex equations for their user metrics.
  			User should not be limited by simple weighted average formula.
  			\item
- 			Let users suggest their own data or data sources. Right now 
+ 			Let users suggest corrections to data or even new data sources. Right now 
  			MATTERS' administrators and data management team are working on
- 			adding data. By involving users in this process MATTERS may have 
+ 			adding data. By involving users in this process, MATTERS may have 
  			more complete, accurate and up-to-date data.
  			\item
  			Role management. Right now the system supports regular users and API users. 
  			Each user metric must have one and only one author. It might be a good idea 
  			to merge these two user entities and introduce shared user metrics that are 
- 			not binded to specific users.
+ 			not bound to specific users.
  		\end{enumerate}
  		\item Software development
  		\begin{enumerate}
@@ -42,12 +42,11 @@
  			Refactor the client side and server side code. Since the system 
  			has been developed by a number of teams with different design 
  			patterns and approaches, there is a significant technical debt. 
- 			It might be worth spending some time rewriting some parts of the system 
+ 			It might be worth spending some time rewriting parts of the system 
  			according to the latest coding and technical standards.
  			\item
- 			Documentation. Right now there is a steep learning curve for the new 
- 			developers who start working on the project. Good documentation may 
- 			dramatically decrease the time it takes for developers to start working 
+ 			Documentation. Right now there is a steep learning curve for new 
+ 			developers who start working on the project. Good documentation would decrease the time it takes for developers to start working 
  			on the project.
  		\end{enumerate}
  	\end{itemize}

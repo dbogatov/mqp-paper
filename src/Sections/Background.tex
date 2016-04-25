@@ -3,10 +3,10 @@
 	The creation of a Metric Builder page and an API for the MATTERS site must 
 	leverage as well as seamlessly integrate with the overall MATTERS site, 
 	which has been created by several prior project groups at WPI. These 
-	students worked to establish the initial features and the design framework 
-	for MATTERS to exist. The initial development of MATTERS in Spring of 2014 
+	students established the initial features and the design framework 
+	for MATTERS. The initial development of MATTERS in Spring of 2014 
 	started with a team of eleven students composed of one undergraduate team 
-	completing their Interactive Qualifying Project (IQP), and 7 WPI graduate 
+	completing their Interactive Qualifying Project (IQP) and seven WPI graduate 
 	students. This team of IQP students researched and came to the first core 
 	decisions regarding the front-end visualization tools for the MATTERS 
 	dashboard \cite{prevreport}. This includes the inclusion of decisions 
@@ -41,8 +41,8 @@
 		\emph{dashboard}. While the \emph{admin panel} is used by administrators
 		to work with data (basic create, read, update, and delete, or CRUD, 
 		operations), in this project we focused on the \emph{dashboard} 
-		subsystem. This subsystem follows MVC (Model-View-Controller) 
-		architecture to clearly separate data, business and presenting logic \cite{mvc}.
+		subsystem. This subsystem follows the MVC (Model-View-Controller) 
+		architecture to clearly separate data, business and presentation logic \cite{mvc}.
 		You can see its visual structure in Figure \ref{fig:sysarch}. 
 		Communication between \emph{View} and \emph{Controller} occurs through 
 		HTTP requests in JSON format. \emph{Controller} talks to \emph{Model} 
@@ -52,7 +52,7 @@
 		\begin{figure}[t]
 			\centering
 			\input{tikz/SystemArchitecture}
-			\caption{MATTERS System architecture}
+			\caption{MATTERS System Architecture}
 			\label{fig:sysarch}
 		\end{figure}
 		
@@ -80,7 +80,7 @@
 		\subsection{Controller}
 		
 			The business logic of the system resides on a Java-based server \cite{java}. 
-			Spring framework is used as a server architecture solution \cite{spring}. A front 
+			The Spring framework is used as a server architecture solution \cite{spring}. A front 
 			end request that comes to the system goes through controllers which, 
 			in turn, invoke services. Services query the data layer and return 
 			data stored	in models. These data models get pushed back to the 
@@ -90,7 +90,7 @@
 			
 			The presentation layer is represented by the HTML based website. The
 			client side generates queries to the server via JavaScript AJAX 
-			calls, then use the returned data to generate the content. The 
+			calls, and then uses the returned data to generate the content. The 
 			website has a significant amount of logic on the client side as it 
 			needs to build tables, plots and charts. The two main JavaScript 
 			libraries used on the client side are jQuery \cite{jquery} and D3 \cite{d3}. jQuery makes it 

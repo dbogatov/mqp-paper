@@ -2,8 +2,9 @@
 
 	With the total amount of data in the world growing steadily at a fast rate, 
 	the need to analyze large amounts of data in datasets, also called big data, is a 
-	key driver for productivity growth and innovation \cite{bigdata}. Examples of data sets found throughout society include social media accounts, census data, medical records, and ticket sales \cite{bdex}. With this increase in 
-	information often freely available across the web, 
+	key driver for productivity, growth, and innovation \cite{bigdata}. Examples of data sets found throughout the web and stored in databases 
+	include social media accounts, census data, medical records, and ticket sales \cite{bdex}. Many valuable data sets are provided by official government sites and other organizations as well. 
+	With this increase in information often freely available across the web, 
 	our society will continue to provide a basis for the continued growth of 
 	data in the future. Data is a part of every industry and business in today's 
 	world from retail to government. Big data can help to create
@@ -16,7 +17,7 @@
 	effective way to present the important information amongst the large amount 
 	of data used and helps to drive complex analysis \cite{bigdata}. Big 
 	data analytics tools can make otherwise too large amounts of data meaningful 
-	to those who looking to interpret significance from it.
+	to those who are looking to interpret and derive insights from the data.
 
 	The Massachusetts High Technology Council, or MHTC \cite{mhtc}, is a group of technological, 
 	professional and higher education executives across the state of Massachusetts. 
@@ -27,32 +28,37 @@
 	successful business and talent building, including in particular with a specific focus on the 
 	technology sectors. In part because of the MHTC and its members, who are 
 	regarded as the region's most venerable technology association, Massachusetts 
-	is regarded as one of the top competitive areas for businesses that are “high tech” \cite{mhtc}.
+	is considered one of the top competitive areas for businesses that are “high tech” \cite{mhtc}.
 
-	The Massachusetts Technology, Talent, and Economic Reporting System,also known as MATTERS, 
+	The Massachusetts Technology, Talent, and Economic Reporting System, also known as MATTERS \cite{matters}, 
 	was developed by MHTC along with Worcester Polytechnic Institute (WPI) and other 
 	institutions as a collaborative effort designed to aid users in understanding a 
-	variety of public data in an effort to help make Massachusetts the top location 
-	for high technology businesses. MATTERS uses this data collected to both measure 
-	and evaluate the current state of Massachusetts compared to other states in the 
-	country. It provides policy makers and advocates with easily accessible and search-able 
+	variety of public data in an act to help make Massachusetts the top location 
+	for high technology businesses. MATTERS allows users to use this data collected to compare and visualize desired information across all states. 
+	It provides policy makers and advocates with easily accessible and search-able 
 	dynamic data to assist in their efforts regarding decisions to help  retain and 
 	grow business in the state. MATTERS integrates a wide 
 	range of talent, cost, and economic metrics and state rankings from federal and 
 	state government sources, non-profit organizations and media outlets into one 
 	location via a data warehouse for its users \cite{about}. 
 
-	In this effort, Worcester Polytechnic Institute, is the technology partner of this collaboration, and the WPI undergraduate and graduate students have worked sicne 2014 on the development of this MATTERS dashboard \cite{wpi}. The full team can be found at http://davis.wpi.edu/dsrg/PROJECTS/MATTERS/Members.html. Previously to our project, WPI IQP, MQP and graduate student teams worked to 
+	In this effort, Worcester Polytechnic Institute is the technology partner of this collaboration, and the WPI undergraduate and graduate students have worked since 2014 on the development of this MATTERS dashboard \cite{wpi}. The full team can be found at http://davis.wpi.edu/dsrg/PROJECTS/MATTERS/Members.html. Previously to our project, WPI IQP, MQP and graduate student teams worked to 
 	develop the MATTERS dashboard as it was when we began working. These previous projects are discussed 
-	in the \textit{Background and Related Work Section}. The goal of our 
+	in the \textit{Background and Related Work Section}. 
+	
+	The goal of our 
 	Major Qualifying Project (MQP) is to provide additional features to the MATTERS 
-	website that will give our users advanced features to interact with the data and 
+	website that gives our users advanced features to interact with the data and 
 	metrics found within the site. These metrics are measures of quantitative assessments which allow people to track performance and make comparisons on the specific data values \cite{metrics}. One key feature for our MQP team is to develop the Metric Builder 
 	as a means for the MHTC to develop and then work with their own 
-	\textit{MATTERS} indicators, which are statistics used in order to measure the current conditions of different sectors as well as examine trends and predict future trends of the data, that they have been in the process of creating \cite{indicator}. In particular, MATTERS users will be able to 
-	create an account on the MATTERS site, and proceed to design the their own unique indicator by developing a metric formula for ranking states from the preexisting metric data. As a second core feature, targeted by our MQP, we will provide a programmatic interface to the MATTERS site. The aim is that this way users will 
+	\textit{MATTERS} indicators \cite{indicator}. An indicator is a set of statistics used to measure the current conditions of different sectors as well as examine trends and predict future trends of the data \cite{indicator}. In particular, MATTERS users will be able to 
+	create an account on the MATTERS site, and proceed to design their own custom indicator by developing a metric formula for ranking states from the preexisting metric data. 
+	
+	As a second core feature, targeted by our MQP project, we provided a programmatic interface to the MATTERS site. The aim is that this way users will 
 	also be able to retrieve any of the data points found throughout the site 
-	for their own personal use via a standard API, which is "a set of requirements that govern how one application can talk to another" \cite{apidef}. The API is an important tool to add convenience for developers who wish to access the data and can save users a lot of time \cite{apidef}. In total, these new 
+	for their own personal use via a standard API, which is "a set of requirements that govern how one application can talk to another" \cite{apidef}. The API is an important tool to add convenience for developers who wish to access the data in a programmatic fashion; avoiding the vicious cycle of having to scrap our MATTERS web site for data, a process that is erroneous and tedious. Thus this can save users a lot of time \cite{apidef}.
+	
+	In total, these new 
 	features will provide authorized users an opportunity to use and share the 
 	data in even more innovative ways, aiding in the MHTC's goal toward making 
 	Massachusetts a leading state for high technology business. These two features 
@@ -61,3 +67,5 @@
 	expanded user base for MATTERS. Different privileges are offered to different types of 
 	users, such as the already existing administrative users, as well as general users who 
 	also would like to create their own indicators.
+	
+	This report will go over the background and related projects that led to our MQP project in Section 2. This also includes literature review on APIs, documentation, economic indicators and how to normalize data. This is followed by the design processes and back-end changes made to develop the Metric Builder, the API and the API Documentation in Section 3. After the designing of each feature, in Section 4 we discuss the evaluation process through the use of user studies, and the resulting changes to our features. Section 4 also shows the final results of both the Metric Builder and the API Documentation. Finally, Section 5 concludes the paper and provides recommendations for future work regarding MATTERS as well as suggestions for future developers to further improve the site as a whole.
