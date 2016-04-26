@@ -26,10 +26,10 @@
 
 \usepackage{titlesec}						% title generation
 \titleformat{\chapter}
-    {\large\bfseries} % format
-    {}                % label
-    {0pt}             % sep
-    {\huge}
+	{\large\bfseries}	 		% format
+	{\huge \thechapter . \ }	% label
+	{0pt}             			% sep
+	{\huge}
 
 
 \fancyhf{}
@@ -67,38 +67,42 @@
 
 \usepackage{courier}						% allow courier font in listings
 
+%\usepackage[hyphenbreaks]{breakurl}		% break long links
+
 \begin{document}
 
-    \include{sections/TitlePage}
+	\include{sections/TitlePage}
 
-    \include{sections/Abstract}
-    \pagebreak
-    
-    \include{sections/ExecutiveSummary}
-    \pagebreak
+	\include{sections/Abstract}
+	\pagebreak
+	
+	\include{sections/ExecutiveSummary}
+	\pagebreak
 
-    \include{sections/Acknowledgements}
-    \pagebreak
+	\include{sections/Acknowledgements}
+	\pagebreak
 
-    \tableofcontents
+	\tableofcontents
 	
 	\listoffigures
 	\listoftables
-	\lstlistoflistings
 	
-    \include{sections/Introduction}
-    
-    \include{sections/Background}
-    
-    \include{sections/Methodology}
-    
-    \include{sections/Testing}
-    
-    \include{sections/Conclusions}
-    
-    \include{sections/Appendices}
+%	\addcontentsline{toc}{chapter}{Listings}
+%	\lstlistoflistings
+	
+	\include{sections/Introduction}
+	
+	\include{sections/Background}
+	
+	\include{sections/Methodology}
+	
+	\include{sections/Testing}
+	
+	\include{sections/Conclusions}
 
-    \bibliographystyle{unsrt}
-    \bibliography{bibliography/references}
+	\bibliographystyle{unsrt}
+	\bibliography{bibliography/references}
+	
+	\include{sections/Appendices}
 
 \end{document}

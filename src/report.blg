@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report.aux
+A level-1 auxiliary file: sections/TitlePage.aux
+A level-1 auxiliary file: sections/Abstract.aux
+A level-1 auxiliary file: sections/ExecutiveSummary.aux
+A level-1 auxiliary file: sections/Acknowledgements.aux
+A level-1 auxiliary file: sections/Introduction.aux
+A level-1 auxiliary file: sections/Background.aux
+A level-1 auxiliary file: sections/Methodology.aux
+A level-1 auxiliary file: sections/Testing.aux
+A level-1 auxiliary file: sections/Conclusions.aux
+The style file: unsrt.bst
+A level-1 auxiliary file: sections/Appendices.aux
+Database file #1: bibliography/references.bib
+You've used 30 entries,
+            1791 wiz_defined-function locations,
+            561 strings with 7375 characters,
+and the built_in function-call counts, 3667 in all, are:
+= -- 297
+> -- 117
+< -- 0
++ -- 57
+- -- 27
+* -- 84
+:= -- 468
+add.period$ -- 71
+call.type$ -- 30
+change.case$ -- 30
+chr.to.int$ -- 0
+cite$ -- 30
+duplicate$ -- 150
+empty$ -- 541
+format.name$ -- 27
+if$ -- 917
+int.to.chr$ -- 0
+int.to.str$ -- 30
+missing$ -- 0
+newline$ -- 134
+num.names$ -- 11
+pop$ -- 198
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 111
+stack$ -- 0
+substring$ -- 0
+swap$ -- 30
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 11
+width$ -- 32
+write$ -- 263
