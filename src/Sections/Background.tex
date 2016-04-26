@@ -26,13 +26,20 @@
 	the MATTERS dashboard, a team of students working on their Major Qualifying 
 	Project (MQP) at WPI improved the administration center and the data 
 	integration for the dashboard. This involved the data integration Pipeline 
-	Manager, which allows for data to be downloaded from sources and uploaded to the database in order to populate the MATTERS Dashboard with this data. The pipelines require no coding experience to use and made it easy for MHTC members to be able to add new data sources quickly \cite{prevreport}. In addition, the Administration Center's development to allow for 
+	Manager, which allows for data to be downloaded from sources and uploaded to 
+	the database in order to populate the MATTERS Dashboard with this data. The 
+	pipelines require no coding experience to use and made it easy for MHTC members 
+	to be able to add new data sources quickly \cite{prevreport}. In addition, the 
+	Administration Center's development to allow for 
 	MHTC and other administrators who had access to be able to easily upload 
 	their desired data and metrics, as well as an intuitive way to view this 
 	data on the administrative end. This MQP team was able to integrate 20 new 
 	data sources for the MATTERS dashboard, make the Administration Center 
 	usable for non-technical users, and improve upon the look-and-feel of the 
-	MATTERS dashboard as a whole \cite{iqp}. Development has continued throughout the past two years from 2014 until now, in the past supported by various MHTC project partners such as: MITRE software engineering architects and Mesh Corporation, a web design firm and consultant for the development of visual state profile pages. 
+	MATTERS dashboard as a whole \cite{iqp}. Development has continued throughout 
+	the past two years from 2014 until now, in the past supported by various MHTC 
+	project partners such as: MITRE software engineering architects and Mesh Corporation, 
+	a web design firm and consultant for the development of visual state profile pages. 
 
 	\section{System Architecture}
 	
@@ -65,17 +72,78 @@
 			\begin{description}[itemsep=-1.5mm, align=right,labelwidth=3cm]
 				\item [Statistics]
 					holds metrics' data in the form of a year, state, metric and 
-					value tuple (see Table \ref{tbl:statstable} in Appendix \ref{app:dbsample})
+					value tuple (see Table \ref{tbl:statstable}).
 				\item [States]
 					holds states' metadata like name, abbreviation and if it is 
-					a peer state (see Table \ref{tbl:statestable} in Appendix \ref{app:dbsample})
+					a peer state (see Table \ref{tbl:statestable}).
 				\item [Metrics]
 					holds metrics' metadata like description, trend and 
-					category (see Table \ref{tbl:metrictable} in Appendix \ref{app:dbsample})
+					category (see Table \ref{tbl:metrictable}).
 			\end{description}
 			
 			The access to these tables is provided via stored procedures as a 
 			data access layer.
+			
+			\begin{table}[h]
+				\centering
+				\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}l c @{}} % use 'Y' for first column 
+					\toprule
+					Column Name	& Type		& Sample Value				\\
+					\midrule
+					
+					StateId		& INT		& 3							\\
+					MetricId	& INT		& 14						\\
+					Year		& INT		& 2013						\\
+					Value		& DOUBLE	& 7000						\\
+					DateAdded	& TIMESTAMP	& 2014-04-19 18:28:34.63874	\\
+					
+					\bottomrule
+				\end{tabularx}
+				\caption{\textbf{Statistics} database relation sample data}
+				\label{tbl:statstable}
+			\end{table}
+			
+			\begin{table}[h]
+				\centering
+				\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}l c @{}} % use 'Y' for first column 
+					\toprule
+					Column Name		& Type		& Sample Value				\\
+					\midrule
+					
+					Id				& INT		& 12						\\
+					Name			& VARCHAR	& Capital Gains Tax Rate	\\
+					Visible			& BOOLEAN	& TRUE						\\
+					IsCalculated	& BOOLEAN	& FALSE						\\
+					DatType			& VARCHAR	& percentage				\\
+					DisplayName		& VARCHAR	& Capital Gains Tax Rate	\\
+					URL				& VARCHAR	& KPMG/Tax Foundation		\\
+					Source			& VARCHAR	& KPMG/Tax Foundation		\\
+					DisplayOrder	& INT		& 7							\\
+					TrendType		& VARCHAR	& reversed					\\
+					
+					\bottomrule
+				\end{tabularx}
+				\caption{\textbf{Metrics} database relation sample data}
+				\label{tbl:metrictable}
+			\end{table}
+			
+			\begin{table}[h]
+				\centering
+				\begin{tabularx}{\textwidth}{@{} >{\bf}Y >{\em}l c @{}} % use 'Y' for first column 
+					\toprule
+					Column Name		& Type		& Sample Value	\\
+					\midrule
+					
+					Id				& INT		& 21			\\
+					Abbreviation	& VARCHAR	& MA			\\
+					Name			& VARCHAR	& Massachusetts	\\
+					IsPeerState		& BOOLEAN	& TRUE			\\
+					
+					\bottomrule
+				\end{tabularx}
+				\caption{\textbf{States} database relation sample data}
+				\label{tbl:statestable}
+			\end{table}
 			
 		\subsection{Controller}
 		
@@ -93,21 +161,22 @@
 			calls, and then uses the returned data to generate the content. The 
 			website has a significant amount of logic on the client side as it 
 			needs to build tables, plots and charts. The two main JavaScript 
-			libraries used on the client side are jQuery \cite{jquery} and D3 \cite{d3}. jQuery makes it 
-			easy to manipulate DOM while D3 is used for generating vector based 
-			plots and charts.
+			libraries used on the client side are jQuery \cite{jquery} and D3 
+			\cite{d3}. jQuery makes it easy to manipulate DOM while D3 is used 
+			for generating vector based plots and charts.
 			
 			Visual representation and displays are based on the responsive 
-			Twitter Bootstrap 3 framework \cite{bootstrap}, which is a collection of CSS classes 
-			and small JavaScript snippets. 
+			Twitter Bootstrap 3 framework \cite{bootstrap}, which is a collection 
+			of CSS classes and small JavaScript snippets. 
 
 	\section{Requirements}
 
 		Before we could embark on creating an API for MATTERS as well as 
 		designing the Metric Builder page for the site, we had to conduct 
 		research. This included to look into other similar features of different 
-		sites, such as the New York Times sliders \cite{slider}, and make decisions regarding implementation, design and security 
-		features for these aspects of the MATTERS site.
+		sites, such as the New York Times sliders \cite{slider}, and make decisions 
+		regarding implementation, design and security features for these aspects 
+		of the MATTERS site.
 
 	\subsection{API and Documentation}
 
@@ -135,7 +204,12 @@
 		especially if the users could be programmatic access. For APIs whose 
 		goals are to share certain data across systems there is a great benefit 
 		efficiency wise, as many manual procedures are cut out by the APIs 
-		automatic generation. Developers can create code to send requests to a system's API and receive the desired data. This system to system interaction can for example replace the need to manually parse the HTML code for the information they are looking for. By interacting from one computer to the other essentially, there is room for humans to be working on other tasks \cite{amazon}. When these tasks are done manually, they waste 
+		automatic generation. Developers can create code to send requests to a 
+		system's API and receive the desired data. This system to system interaction 
+		can for example replace the need to manually parse the HTML code for the 
+		information they are looking for. By interacting from one computer to the 
+		other essentially, there is room for humans to be working on other tasks 
+		\cite{amazon}. When these tasks are done manually, they waste 
 		time and are both laborious and repetitive, as well as being more prone 
 		to error; all of these things being costly on the developer end. While 
 		it is more time consuming and costly to develop an API initially, the 
@@ -168,7 +242,15 @@
 		API and their own code, as many developers style their code in their own 
 		unique way. 
 		
-		In order to get the data that is stored in MATTERS, the teams of developers labor to get this data from over thirty different sites across the web. Some of these sites do not currently have an API, which makes the process of getting the desired data much more difficult. For these sites it takes extra effort just to get the data into the MATTERS site. As a result of this issue seen when trying to interact with other data driven sites, we do not want our site to give developers the same issues. An API will give other developers an easier means of accessing the data stored by MATTERS rather than only seeing the data from the front end of the site.
+		In order to get the data that is stored in MATTERS, the teams of developers 
+		labor to get this data from over thirty different sites across the web. Some 
+		of these sites do not currently have an API, which makes the process of 
+		getting the desired data much more difficult. For these sites it takes 
+		extra effort just to get the data into the MATTERS site. As a result of 
+		this issue seen when trying to interact with other data driven sites, we 
+		do not want our site to give developers the same issues. An API will give 
+		other developers an easier means of accessing the data stored by MATTERS 
+		rather than only seeing the data from the front end of the site.
 
 	\subsection{Metric Builder}
 

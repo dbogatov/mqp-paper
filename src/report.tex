@@ -67,8 +67,6 @@
 
 \usepackage{courier}						% allow courier font in listings
 
-%\usepackage[hyphenbreaks]{breakurl}		% break long links
-
 \begin{document}
 
 	\include{sections/TitlePage}
@@ -86,9 +84,10 @@
 	
 	\listoffigures
 	\listoftables
-	
-%	\addcontentsline{toc}{chapter}{Listings}
-%	\lstlistoflistings
+
+	\clearpage
+ 	\addcontentsline{toc}{chapter}{\lstlistlistingname}
+	\lstlistoflistings
 	
 	\include{sections/Introduction}
 	
